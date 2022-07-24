@@ -1,9 +1,12 @@
-﻿using TimeSheets.Entities;
+﻿using MySqlConnector;
+using TimeSheets.Entities;
 
 namespace TimeSheets.Repositories.Persons;
 
 public class PersonRepository : IPersonsRepository
 {
+    
+    
     public void Add(Person person)
     {
         throw new NotImplementedException();

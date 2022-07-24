@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MySqlConnector;
 using TimeSheets.DTOs;
 using TimeSheets.Entities;
 
@@ -6,8 +7,12 @@ namespace TimeSheets.Controllers.Persons;
 
 [Route("person/manage/")]
 [ApiController]
-public class PersonsController : Controller
+public class PersonsController : BaseController
 {
+    public PersonsController(MySqlConnection connection) : base(connection)
+    {
+    }
+    
     [HttpPost("add/agent")]
     public IActionResult Add([FromBody] PersonDTO person)
     {
