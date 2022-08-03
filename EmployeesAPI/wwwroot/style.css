@@ -1,0 +1,59 @@
+.wrapper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 200px auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.wrapper .inp-email-wrap {
+  margin-bottom: 30px;
+}
+
+.wrapper .inp-pass-wrap {
+  margin-bottom: 15px;
+}
+
+.wrapper .but-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.wrapper .but-wrap .sub-but {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 50px;
+  height: 20px;
+}
+
+.wrapper .but-wrap .res-but {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 50px;
+  height: 20px;
+}
+
+.wrapper .but-wrap .sub-but:hover {
+  background-color: gray;
+}
+
+.wrapper .but-wrap .res-but:hover {
+  background-color: gray;
+}
+/*# sourceMappingURL=style.css.map */

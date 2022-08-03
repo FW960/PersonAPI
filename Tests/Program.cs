@@ -1,13 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text;
 using AutoMapper;
-using PersonsAPI.DTOs;
-using PersonsAPI.Entities;
+using EmployeesAPI.DatabaseContext;
+using EmployeesAPI.DTOs;
+using EmployeesAPI.Entities;
+using EmployeesAPI.Services.Persons;
 
-var conf = new MapperConfiguration(configure => configure.CreateMap<PersonDTO, Person>());
 
-Mapper map = new Mapper(conf);
+string encryptedPass = (Encrypt.Password("24beluro"));
 
-var a = map.Map<Person>(new PersonDTO());
-
-Console.Write("A");
+Console.Write(encryptedPass);

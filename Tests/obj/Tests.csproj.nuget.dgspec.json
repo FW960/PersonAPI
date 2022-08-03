@@ -4,14 +4,14 @@
     "C:\\Users\\windo\\RiderProjects\\TimeSheets\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj": {
+    "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj",
-        "projectName": "PersonsAPI",
-        "projectPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj",
+        "projectName": "EmployeesAPI",
+        "projectPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj",
         "packagesPath": "C:\\Users\\windo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\obj\\",
+        "outputPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\windo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,9 +44,29 @@
               "target": "Package",
               "version": "[11.0.1, )"
             },
+            "IdentityServer4.EntityFramework": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            },
+            "IdentityServer4.EntityFramework.Mysql": {
+              "target": "Package",
+              "version": "[1.0.0-rc2, )"
+            },
             "Microsoft.AspNet.WebApi.WebHost": {
               "target": "Package",
               "version": "[5.2.9, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.2.3, )"
             },
             "MySqlConnector": {
               "target": "Package",
@@ -64,6 +84,14 @@
               "target": "Package",
               "version": "[5.1.0, )"
             },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql.Design": {
+              "target": "Package",
+              "version": "[1.1.2, )"
+            },
             "Swashbuckle": {
               "target": "Package",
               "version": "[5.6.0, )"
@@ -79,6 +107,10 @@
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.21.0, )"
             }
           },
           "imports": [
@@ -127,8 +159,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj": {
-                "projectPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj"
+              "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj": {
+                "projectPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj"
               }
             }
           }
@@ -146,6 +178,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[11.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
             }
           },
           "imports": [
