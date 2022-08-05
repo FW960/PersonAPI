@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeesAPI.Controllers.Persons;
 
 [Authorize]
-[Route("person/manage/")]
+[Route("admin/person/manage")]
 [ApiController]
 public class PersonsController : BaseController
 {
@@ -95,5 +95,11 @@ public class PersonsController : BaseController
         {
             return NotFound();
         }
+    }
+
+    [Authorize]
+    [HttpGet("authorized.html")]
+    public void Authorize()
+    {
     }
 }

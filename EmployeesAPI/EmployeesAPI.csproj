@@ -40,5 +40,11 @@
     <ItemGroup>
       <Folder Include="webPage" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="admin\person\manage\authorized.html">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
 
 </Project>

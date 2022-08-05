@@ -1,45 +1,87 @@
 .wrapper {
-    width: fit-content;
-    margin: 200px auto 0;
+  width: fit-content;
+  margin: 200px auto 0;
+  display: flex;
+  flex-direction: row;
+
+  .inp-email-wrap {
+    margin-bottom: 30px;
+  }
+
+  .inp-pass-wrap {
+    margin-bottom: 15px;
+  }
+
+  .but-wrap {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 
-    .inp-email-wrap {
-        margin-bottom: 30px;
+    .sub-but {
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #000;
+      width: 50px;
+      height: 20px;
     }
 
-    .inp-pass-wrap {
-        margin-bottom: 15px;
+    .res-but {
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #000;
+      width: 50px;
+      height: 20px;
+    }
+    .testBut{
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #000;
+      width: 50px;
+      height: 20px;
     }
 
-    .but-wrap {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
 
-        .sub-but {
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #000;
-            width: 50px;
-            height: 20px;
-        }
-
-        .res-but {
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #000;
-            width: 50px;
-            height: 20px;
-        }
-
-        .sub-but:hover {
-            background-color: gray;
-        }
-
-        .res-but:hover {
-            background-color: gray;
-        }
+    .sub-but:hover {
+      background-color: gray;
     }
+
+
+    .res-but:hover {
+      background-color: gray;
+    }
+  }
+
+  .welcome-page {
+    width: fit-content;
+    margin: 0 auto;
+
+    .welcome-text {
+      width: fit-content;
+      height: fit-content;
+      padding: 5px;
+      font-size: large;
+    }
+
+    .continue-but {
+      margin: 0 auto;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #000;
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #000;
+      width: fit-content;
+      height: fit-content;
+      padding: 2px;
+    }
+
+    .continue-but:hover {
+      background-color: gray;
+    }
+  }
 
 }

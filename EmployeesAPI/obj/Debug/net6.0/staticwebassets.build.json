@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5gzS+aqzHf74Z04VFBMoAyqDU3BPNK262UDUKaR7UkY=",
+  "Hash": "09cbAd4f6deToVmob8BTzBK+WyNmejmItf6Tm9K8O8k=",
   "Source": "EmployeesAPI",
   "BasePath": "_content/EmployeesAPI",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authorize.html",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authenticate.html",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "authorize.html",
+      "RelativePath": "authenticate.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,7 +31,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\authorize.html"
+      "OriginalItemSpec": "wwwroot\\authenticate.html"
     },
     {
       "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authorize.js",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "wwwroot\\authorize.js"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authorized.html",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "index.html",
+      "RelativePath": "authorized.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,7 +65,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.html"
+      "OriginalItemSpec": "wwwroot\\authorized.html"
     },
     {
       "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\jquery.js",

@@ -34,6 +34,7 @@
 }
 
 .wrapper .but-wrap .sub-but {
+  border-radius: 5px;
   text-align: center;
   cursor: pointer;
   border: 1px solid #000;
@@ -42,6 +43,16 @@
 }
 
 .wrapper .but-wrap .res-but {
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 50px;
+  height: 20px;
+}
+
+.wrapper .but-wrap .testBut {
+  border-radius: 5px;
   text-align: center;
   cursor: pointer;
   border: 1px solid #000;
@@ -54,6 +65,46 @@
 }
 
 .wrapper .but-wrap .res-but:hover {
+  background-color: gray;
+}
+
+.wrapper .welcome-page {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.wrapper .welcome-page .welcome-text {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px;
+  font-size: large;
+}
+
+.wrapper .welcome-page .continue-but {
+  margin: 0 auto;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #000;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2px;
+}
+
+.wrapper .welcome-page .continue-but:hover {
   background-color: gray;
 }
 /*# sourceMappingURL=style.css.map */

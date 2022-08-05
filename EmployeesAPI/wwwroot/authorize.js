@@ -1,5 +1,7 @@
+
 ///<reference path = "typings/globals/jquery/index.d.ts"/>
 
+const $wrapper = document.querySelector(".wrapper");
 let tokens;
 
 $(".sub-but").click(async function (e)
@@ -30,6 +32,10 @@ $(".sub-but").click(async function (e)
 
     if (!resp.ok)
         return;
+    else
+    {
+        displayWelcomePage(login);
+    }
 
 });
 
@@ -45,11 +51,36 @@ function validateInput(login, pass)
 
     if (login.match(validRegex) && pass.length >= 5)
     {
-
         return true;
 
     } else
     {
         return false;
     }
+}
+function displayWelcomePage(login)
+{
+    let $welcomePage = document.createElement("div");
+
+    let $welcomeText = document.createElement("p");
+
+    let $continueBut = document.createElement("a");
+
+    $welcomePage.classList.add("welcome-page");
+
+    $welcomeText.classList.add("welcome-text");
+
+    $continueBut.classList.add("continue-but");
+
+    $welcomeText.innerText = `Welcome back ${login.split("@")[0]}`;
+
+    $continueBut.text = "Continue";
+
+    $continueBut.setAttribute("href", "https://localhost:7292/admin/person/manage/authorized.html");
+
+    $welcomePage.append($welcomeText, $continueBut);
+
+    $wrapper.append($welcomePage);
+
+    $(".form").remove();
 }
