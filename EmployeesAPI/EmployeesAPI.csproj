@@ -30,21 +30,10 @@
         <PackageReference Include="NLog" Version="5.*" />
     </ItemGroup>
     <ItemGroup>
-      <None Include="wwwroot\authorize.html" />
       <None Include="wwwroot\authorize.js" />
-      <None Include="wwwroot\index.html" />
       <None Include="wwwroot\style.css" />
       <None Include="wwwroot\style.css.map" />
       <None Include="wwwroot\style.scss" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="webPage" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="admin\person\manage\authorized.html">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
     </ItemGroup>
 
 </Project>

@@ -22,7 +22,7 @@ public class AuthorizationController : Controller
     [HttpPost("employee")]
     public IActionResult AuthorizeEmployee([FromBody] MyAuthenticationRequest request)
     {
-        if(_employeeService.Authenticate(request, out TokenDTO token))
+        if(_employeeService.Authenticate(request, out TokenDTO token, HttpContext))
         {
             return Ok(token);
         }
@@ -33,8 +33,12 @@ public class AuthorizationController : Controller
     [HttpPost("admin")]
     public IActionResult AuthorizeAdmin([FromBody] MyAuthenticationRequest request)
     {
-        if(_adminService.Authenticate(request, out TokenDTO token))
+        if(_adminService.Authenticate(request, out TokenDTO token, HttpContext))
         {
+            HttpContext.Response.Cookies.Append("MainTokens", token.token);
+            
+            HttpContext.Response.Cookies.Append("RefreshTokens", token.refreshToken);
+            
             return Ok(token);
         }
 

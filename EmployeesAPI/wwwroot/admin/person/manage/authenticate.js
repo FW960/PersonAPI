@@ -60,27 +60,40 @@ function validateInput(login, pass)
 }
 function displayWelcomePage(login)
 {
-    let $welcomePage = document.createElement("div");
+    let $welcomePage = $("<div>", { class: "welcome-page" });
 
-    let $welcomeText = document.createElement("p");
+    let $welcomeText = $("<p>", { class: "welcome-text" });
 
-    let $continueBut = document.createElement("a");
+    let $continueBut = $("<div>", { class: "continue-but" });
 
-    $welcomePage.classList.add("welcome-page");
+    $welcomeText.text(`Welcome back ${login.split("@")[0]}`);
 
-    $welcomeText.classList.add("welcome-text");
+    $continueBut.text("Continue");
 
-    $continueBut.classList.add("continue-but");
+    $(".wrapper").append($welcomePage);
 
-    $welcomeText.innerText = `Welcome back ${login.split("@")[0]}`;
+    $($welcomePage).append($welcomeText);
 
-    $continueBut.text = "Continue";
+    $($welcomePage).append($continueBut);
 
-    $continueBut.setAttribute("href", "https://localhost:7292/admin/person/manage/authorized.html");
-
-    $welcomePage.append($welcomeText, $continueBut);
-
-    $wrapper.append($welcomePage);
+    $(".continue-but").click(redirectToAuthorizedPage);
 
     $(".form").remove();
+}
+
+
+
+function redirectToAuthorizedPage(e)
+{
+    const res = fetch("https://localhost:7292/admin/person/manage/authorized.html", {
+        method: "GET",
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Token': `${tokens.token}`,
+            'RefreshToken': `${tokens.refreshToken}`
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+    }).then(window.location.replace("https://localhost:7292/admin/person/manage/authorized.html"));
 }

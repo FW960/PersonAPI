@@ -17,6 +17,7 @@ public class PersonsController : BaseController
         services.Logger = logger;
         _services = services;
     }
+
     [Authorize]
     [HttpPost("add/agent")]
     public IActionResult Add([FromBody] PersonDTO person, [FromQuery] string password)
@@ -25,11 +26,10 @@ public class PersonsController : BaseController
         {
             return Ok();
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return BadRequest();
     }
+
     [Authorize]
     [HttpDelete("delete/agent/id={id:int}")]
     public IActionResult Delete([FromRoute] int id)
@@ -38,11 +38,10 @@ public class PersonsController : BaseController
         {
             return Ok();
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return BadRequest();
     }
+
     [Authorize]
     [HttpPut("update/agent/id={id:int}")]
     public IActionResult Update([FromRoute] int id, [FromBody] PersonDTO person)
@@ -51,11 +50,10 @@ public class PersonsController : BaseController
         {
             return Ok();
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return BadRequest();
     }
+
     [Authorize]
     [HttpGet("get/by_id/agent/id={id}")]
     public IActionResult TryFind([FromRoute] int id)
@@ -64,11 +62,10 @@ public class PersonsController : BaseController
         {
             return Ok(dto);
         }
-        else
-        {
-            return NotFound();
-        }
+
+        return NotFound();
     }
+
     [Authorize]
     [HttpGet("get/by_last_name/agent/last_name={name:alpha}")]
     public IActionResult TryFind([FromRoute] string name)
@@ -77,10 +74,8 @@ public class PersonsController : BaseController
         {
             return Ok(dto);
         }
-        else
-        {
-            return NotFound();
-        }
+
+        return NotFound();
     }
 
     [Authorize]
@@ -91,15 +86,7 @@ public class PersonsController : BaseController
         {
             return Ok(dtos);
         }
-        else
-        {
-            return NotFound();
-        }
-    }
 
-    [Authorize]
-    [HttpGet("authorized.html")]
-    public void Authorize()
-    {
+        return NotFound();
     }
 }

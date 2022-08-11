@@ -11,7 +11,7 @@ public class EmployeeService : IService
     {
         _connection = connection;
     }
-    public bool Authenticate(MyAuthenticationRequest request, out TokenDTO token)
+    public bool Authenticate(MyAuthenticationRequest request, out TokenDTO token, HttpContext context)
     {
         if (string.IsNullOrEmpty(request.Login) || string.IsNullOrEmpty(request.Password))
         {
@@ -43,6 +43,10 @@ public class EmployeeService : IService
                     token = JwtToken.GenerateBaseToken(request.Login, reader.GetInt32(0)),
                     refreshToken = JwtToken.GenerateRefreshToken(request.Login, reader.GetInt32(0))
                 };
+                context.Response.Cookies.Append("MainToken", token.token);
+                
+                context.Response.Cookies.Append("RefreshToken", token.refreshToken);
+                
                 return true;
             }
 

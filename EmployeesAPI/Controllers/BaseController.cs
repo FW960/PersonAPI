@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MySqlConnector;
 
 namespace EmployeesAPI.Controllers;
 

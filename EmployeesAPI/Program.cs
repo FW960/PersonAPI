@@ -113,11 +113,11 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseMiddleware<TokenValidationMiddleware>();
+    
     app.UseStaticFiles();
     
     app.UseAuthentication();
-
-    app.UseMiddleware<TokenValidationMiddleware>();
 
     app.MapGet("/", [Authorize]() => "Hello World!");
 

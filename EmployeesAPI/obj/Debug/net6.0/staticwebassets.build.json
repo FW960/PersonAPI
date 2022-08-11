@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "09cbAd4f6deToVmob8BTzBK+WyNmejmItf6Tm9K8O8k=",
+  "Hash": "aZcpp6Au50VyUnaPIC9jjnGMesSeS5vaIept+gupd74=",
   "Source": "EmployeesAPI",
   "BasePath": "_content/EmployeesAPI",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authenticate.html",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\authenticate.html",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "authenticate.html",
+      "RelativePath": "admin/person/manage/authenticate.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,15 +31,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\authenticate.html"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authenticate.html"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authorize.js",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\authenticate.js",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "authorize.js",
+      "RelativePath": "admin/person/manage/authenticate.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -48,15 +48,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\authorize.js"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authenticate.js"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\authorized.html",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\authorized.html",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "authorized.html",
+      "RelativePath": "admin/person/manage/authorized.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,15 +65,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\authorized.html"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authorized.html"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\jquery.js",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\jquery.js",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "jquery.js",
+      "RelativePath": "admin/person/manage/jquery.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,15 +82,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\jquery.js"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\style.css",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\style.css",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "style.css",
+      "RelativePath": "admin/person/manage/style.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,15 +99,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\style.css"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\style.css"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\style.css.map",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\style.css.map",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "style.css.map",
+      "RelativePath": "admin/person/manage/style.css.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,15 +116,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\style.css.map"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\style.css.map"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\style.scss",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\style.scss",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "style.scss",
+      "RelativePath": "admin/person/manage/style.scss",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -133,15 +133,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\style.scss"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\style.scss"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\typings\\globals\\jquery\\index.d.ts",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\typings\\globals\\jquery\\index.d.ts",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "typings/globals/jquery/index.d.ts",
+      "RelativePath": "admin/person/manage/typings/globals/jquery/index.d.ts",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -150,15 +150,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\typings\\globals\\jquery\\index.d.ts"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\typings\\globals\\jquery\\index.d.ts"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\typings\\globals\\jquery\\typings.json",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\typings\\globals\\jquery\\typings.json",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "typings/globals/jquery/typings.json",
+      "RelativePath": "admin/person/manage/typings/globals/jquery/typings.json",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -167,15 +167,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\typings\\globals\\jquery\\typings.json"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\typings\\globals\\jquery\\typings.json"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\typings\\index.d.ts",
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\typings\\index.d.ts",
       "SourceId": "EmployeesAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
       "BasePath": "_content/EmployeesAPI",
-      "RelativePath": "typings/index.d.ts",
+      "RelativePath": "admin/person/manage/typings/index.d.ts",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -184,7 +184,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\typings\\index.d.ts"
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\typings\\index.d.ts"
     }
   ]
 }

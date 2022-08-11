@@ -1,39 +1,49 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using EmployeesAPI.Entities;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EmployeesAPI.Services;
 
 public static class JwtToken
 {
-    public static string Generate(int id)
+    public static bool ValidateToken(TokenDTO dtos)
     {
-        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+        var handler = new JwtSecurityTokenHandler();
 
-        ConfigurationManager conf = new ConfigurationManager();
-
-        conf.AddJsonFile("appsettings.json");
-
-        var code = conf.GetSection("Secret").Value;
-        
-        byte[] bytes = Encoding.UTF8.GetBytes(code);
-
-        SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+        try
         {
-            Subject = new ClaimsIdentity(new Claim[]
+            handler.ValidateToken(dtos.token, new TokenValidationParameters
             {
-                new Claim(ClaimTypes.Name, id.ToString())
-            }),
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidIssuer = AuthOptions.ISSUER,
+                ValidAudience = AuthOptions.AUDIENCE,
+                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
+            }, out SecurityToken token);
+        }
+        catch
+        {
+            return false;
+        }
 
-            Expires = DateTime.UtcNow.AddMinutes(15),
+        try
+        {
+            handler.ValidateToken(dtos.refreshToken, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidIssuer = AuthOptions.ISSUER,
+                ValidAudience = AuthOptions.AUDIENCE,
+                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
+            }, out SecurityToken token);
+        }
+        catch
+        {
+            return false;
+        }
 
-            SigningCredentials = new SigningCredentials(new
-                SymmetricSecurityKey(bytes), SecurityAlgorithms.HmacSha256Signature)
-        };
-
-        SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
-
-        return tokenHandler.WriteToken(token);
+        return true;
     }
 }

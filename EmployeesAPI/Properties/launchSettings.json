@@ -9,7 +9,7 @@
   },
   "profiles": {
     "TimeSheets": {
-      "launchUrl": "swagger",
+      "launchUrl": "admin/person/manage/authenticate.html",
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
