@@ -29,11 +29,5 @@
         <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.0" />
         <PackageReference Include="NLog" Version="5.*" />
     </ItemGroup>
-    <ItemGroup>
-      <None Include="wwwroot\authorize.js" />
-      <None Include="wwwroot\style.css" />
-      <None Include="wwwroot\style.css.map" />
-      <None Include="wwwroot\style.scss" />
-    </ItemGroup>
 
 </Project>

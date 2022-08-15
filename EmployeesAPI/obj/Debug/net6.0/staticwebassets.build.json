@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aZcpp6Au50VyUnaPIC9jjnGMesSeS5vaIept+gupd74=",
+  "Hash": "5i9r1/1zPaLFDomOwkTt0MTlUeCplhk5pp3Hdjddsx4=",
   "Source": "EmployeesAPI",
   "BasePath": "_content/EmployeesAPI",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authorized.html"
+    },
+    {
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\authorized.js",
+      "SourceId": "EmployeesAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\",
+      "BasePath": "_content/EmployeesAPI",
+      "RelativePath": "admin/person/manage/authorized.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authorized.js"
     },
     {
       "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\wwwroot\\admin\\person\\manage\\jquery.js",

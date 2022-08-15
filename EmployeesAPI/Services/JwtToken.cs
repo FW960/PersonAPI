@@ -6,13 +6,13 @@ namespace EmployeesAPI.Services;
 
 public static class JwtToken
 {
-    public static bool ValidateToken(TokenDTO dtos)
+    public static bool ValidateToken(string token)
     {
         var handler = new JwtSecurityTokenHandler();
 
         try
         {
-            handler.ValidateToken(dtos.token, new TokenValidationParameters
+            handler.ValidateToken(token, new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 ValidateIssuer = true,
@@ -20,30 +20,13 @@ public static class JwtToken
                 ValidIssuer = AuthOptions.ISSUER,
                 ValidAudience = AuthOptions.AUDIENCE,
                 IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
-            }, out SecurityToken token);
+            }, out SecurityToken validated);
         }
         catch
         {
             return false;
         }
-
-        try
-        {
-            handler.ValidateToken(dtos.refreshToken, new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidIssuer = AuthOptions.ISSUER,
-                ValidAudience = AuthOptions.AUDIENCE,
-                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
-            }, out SecurityToken token);
-        }
-        catch
-        {
-            return false;
-        }
-
+        
         return true;
     }
 }

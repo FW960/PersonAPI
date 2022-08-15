@@ -1,4 +1,5 @@
-﻿using EmployeesAPI.Entities;
+﻿using System.Text.Json;
+using EmployeesAPI.Entities;
 using EmployeesAPI.Services;
 
 namespace EmployeesAPI.Middlewares;
@@ -18,32 +19,65 @@ public class TokenValidationMiddleware
         {
             TokenDTO tokens = new TokenDTO
             {
-                token = context.Request.Headers["Token"],
-                refreshToken = context.Request.Headers["RefreshToken"]
+                refreshToken = context.Request.Headers["RefreshToken"],
+                token = context.Request.Headers["Token"]
             };
 
-            if (!JwtToken.ValidateToken(tokens))
-            {
-                context.Response.StatusCode = 401;
-                return;
-            }
-            else
-            {
-                context.Response.Cookies.Delete("Token");
+            if (string.IsNullOrEmpty(tokens.token) && string.IsNullOrEmpty(tokens.refreshToken))
+                tokens = new TokenDTO
+                {
+                    refreshToken = context.Request.Cookies["RefreshToken"],
+                    token = context.Request.Cookies["Token"]
+                };
 
-                context.Response.Cookies.Delete("RefreshToken");
+            bool validateToken = JwtToken.ValidateToken(tokens.token);
 
+            if (validateToken)
+            {
                 context.Response.Cookies.Append("Token", tokens.token,
                     new CookieOptions
                     {
-                        Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(15)
+                        Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(15),
                     });
 
                 context.Response.Cookies.Append("RefreshToken", tokens.refreshToken, new CookieOptions
                     {
-                        Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(600)
+                        Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(600),
                     }
                 );
+            }
+            else
+            {
+                if (JwtToken.ValidateToken(tokens.refreshToken))
+                {
+                    HttpClient client = new HttpClient();
+
+                    HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get,
+                        "https://localho.st:7001/authorize/admin/get-new-token");
+
+                    message.Headers.Add("RefreshToken", tokens.refreshToken);
+
+                    var headers = client.Send(message).Headers;
+
+                    tokens.token = headers.First(header => header.Key == "Token").Value.ToString();
+
+                    context.Response.Cookies.Append("Token", tokens.token,
+                        new CookieOptions
+                        {
+                            Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(15),
+                        });
+
+                    context.Response.Cookies.Append("RefreshToken", tokens.refreshToken, new CookieOptions
+                        {
+                            Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(600),
+                        }
+                    );
+                }
+                else
+                {
+                    context.Response.StatusCode = 401;
+                    return;
+                }
             }
         }
 

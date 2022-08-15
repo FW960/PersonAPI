@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9mBlLDfTO7jjTj8GwO3OHhQteS2R6EICsxT+tTrDLtILDsqTpz5bdVkqq2CI3kvvYeaIK4VDg39iEo4chppyIA==",
+  "dgSpecHash": "4/V8+P87kusu28bycYojkNaoXuSHXbcaqsfWMRv1vcjaCWy49UalUt3hhADYRsJamJF6RgwUbm75zFHS/Salqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj",
   "expectedPackageFiles": [
@@ -47,7 +47,7 @@
     "C:\\Users\\windo\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
-    "C:\\Users\\windo\\.nuget\\packages\\nlog\\5.0.1\\nlog.5.0.1.nupkg.sha512",
+    "C:\\Users\\windo\\.nuget\\packages\\nlog\\5.0.2\\nlog.5.0.2.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\nlog.extensions.logging\\5.0.1\\nlog.extensions.logging.5.0.1.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\nlog.web.aspnetcore\\5.1.0\\nlog.web.aspnetcore.5.1.0.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.2\\pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",

@@ -8,42 +8,21 @@ namespace AuthorizationAPI.Services.Services;
 
 public static class JwtToken
 {
-    public static string GenerateBaseToken(string login, int id)
+    public static string GenerateToken(string login, string password, TimeSpan time)
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, login),
-            new Claim(ClaimTypes.NameIdentifier, id.ToString())
+            new Claim(ClaimTypes.Email, login),
+            new Claim("Password", password)
         };
         var jwt = new JwtSecurityToken(
             issuer: AuthOptions.ISSUER,
             audience: AuthOptions.AUDIENCE,
             claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)), // время действия 2 минуты
+            expires: DateTime.UtcNow.Add(time), // время действия 2 минуты
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(),
                 SecurityAlgorithms.HmacSha256));
 
         return new JwtSecurityTokenHandler().WriteToken(jwt);
-    }
-
-    public static string GenerateRefreshToken(string login, int id)
-    {
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, login),
-            new Claim(ClaimTypes.NameIdentifier, id.ToString())
-        };
-
-        var token = new JwtSecurityToken(
-            claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(600)),
-            issuer: AuthOptions.ISSUER,
-            audience: AuthOptions.AUDIENCE,
-            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(),
-                SecurityAlgorithms.HmacSha256
-            )
-        );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

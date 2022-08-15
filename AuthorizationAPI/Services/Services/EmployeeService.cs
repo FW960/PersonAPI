@@ -24,35 +24,7 @@ public class EmployeeService : IService
 
         try
         {
-            _connection.Open();
-
-            var cmd = _connection.CreateCommand();
-
-            cmd.CommandText = "SELECT Id FROM employees WHERE Email = @email AND Password = @pass";
-
-            cmd.Parameters.AddWithValue("@email", request.Login);
-
-            cmd.Parameters.AddWithValue("@pass", request.Password);
-            
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                token = new TokenDTO
-                {
-                    token = JwtToken.GenerateBaseToken(request.Login, reader.GetInt32(0)),
-                    refreshToken = JwtToken.GenerateRefreshToken(request.Login, reader.GetInt32(0))
-                };
-                context.Response.Cookies.Append("MainToken", token.token);
-                
-                context.Response.Cookies.Append("RefreshToken", token.refreshToken);
-                
-                return true;
-            }
-
-            token = new TokenDTO();
-            
-            return false;
+            throw new NotImplementedException();
         }
         catch
         {
