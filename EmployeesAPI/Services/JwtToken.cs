@@ -6,7 +6,7 @@ namespace EmployeesAPI.Services;
 
 public static class JwtToken
 {
-    public static bool ValidateToken(string token)
+    public static bool ValidateToken(string token, bool forMainToken)
     {
         var handler = new JwtSecurityTokenHandler();
 
@@ -19,7 +19,7 @@ public static class JwtToken
                 ValidateAudience = true,
                 ValidIssuer = AuthOptions.ISSUER,
                 ValidAudience = AuthOptions.AUDIENCE,
-                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
+                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(forMainToken)
             }, out SecurityToken validated);
         }
         catch

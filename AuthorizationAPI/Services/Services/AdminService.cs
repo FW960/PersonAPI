@@ -13,7 +13,7 @@ public class AdminService : IService
         _connection = connection;
     }
 
-    public bool Authenticate(MyAuthenticationRequest request, out TokenDTO token, HttpContext context)
+    public bool Authenticate(MyAuthenticationRequest request, out TokenDTO token, HttpContext context, bool passIsEnc)
     {
         if (string.IsNullOrEmpty(request.Login) || string.IsNullOrEmpty(request.Password))
         {
@@ -22,7 +22,8 @@ public class AdminService : IService
             return false;
         }
 
-        request.Password = Encrypt.Password(request.Password);
+        if (!passIsEnc)
+            request.Password = Encrypt.Password(request.Password);
 
         try
         {
@@ -42,8 +43,8 @@ public class AdminService : IService
             {
                 token = new TokenDTO
                 {
-                    token = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(15)),
-                    refreshToken = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(300))
+                    token = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(15), true),
+                    refreshToken = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(300), false)
                 };
 
                 var cookieOptions = new CookieOptions
@@ -51,9 +52,9 @@ public class AdminService : IService
                     HttpOnly = true,
                     Expires = DateTime.UtcNow.AddDays(7)
                 };
-                
+
                 context.Response.Cookies.Append("MainToken", token.refreshToken, cookieOptions);
-                
+
                 context.Response.Cookies.Append("RefreshToken", token.refreshToken, cookieOptions);
 
                 return true;

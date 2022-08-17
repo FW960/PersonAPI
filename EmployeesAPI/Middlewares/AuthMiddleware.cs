@@ -1,14 +1,13 @@
-﻿using System.Text.Json;
-using EmployeesAPI.Entities;
+﻿using EmployeesAPI.Entities;
 using EmployeesAPI.Services;
 
 namespace EmployeesAPI.Middlewares;
 
-public class TokenValidationMiddleware
+public class AuthMiddleware
 {
     private readonly RequestDelegate _next;
 
-    public TokenValidationMiddleware(RequestDelegate next)
+    public AuthMiddleware(RequestDelegate next)
     {
         _next = next;
     }
@@ -30,9 +29,9 @@ public class TokenValidationMiddleware
                     token = context.Request.Cookies["Token"]
                 };
 
-            bool validateToken = JwtToken.ValidateToken(tokens.token);
+            bool mainTokenValidated = JwtToken.ValidateToken(tokens.token, true);
 
-            if (validateToken)
+            if (mainTokenValidated)
             {
                 context.Response.Cookies.Append("Token", tokens.token,
                     new CookieOptions
@@ -42,24 +41,40 @@ public class TokenValidationMiddleware
 
                 context.Response.Cookies.Append("RefreshToken", tokens.refreshToken, new CookieOptions
                     {
-                        Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(600),
+                        Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(300),
                     }
                 );
             }
             else
             {
-                if (JwtToken.ValidateToken(tokens.refreshToken))
+                if (JwtToken.ValidateToken(tokens.refreshToken, false))
                 {
-                    HttpClient client = new HttpClient();
+                    string token;
+                    
+                    try
+                    {
+                        HttpClient client = new HttpClient();
 
-                    HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get,
-                        "https://localho.st:7001/authorize/admin/get-new-token");
+                        client.BaseAddress = new Uri("https://localhost:7001");
 
-                    message.Headers.Add("RefreshToken", tokens.refreshToken);
+                        HttpRequestMessage message =
+                            new HttpRequestMessage(HttpMethod.Get, "authorize/admin/get-new-token");
 
-                    var headers = client.Send(message).Headers;
+                        message.Headers.Add("RefreshToken", tokens.refreshToken);
 
-                    tokens.token = headers.First(header => header.Key == "Token").Value.ToString();
+                        var responseMessage = await client.SendAsync(message);
+                        
+                        token = responseMessage.Headers.FirstOrDefault(header => header.Key == "Token").Value
+                            .First();
+                    }
+                    catch
+                    {
+                        //todo logger
+                        context.Response.StatusCode = 401;
+                        return;
+                    }
+
+                    tokens.token = token;
 
                     context.Response.Cookies.Append("Token", tokens.token,
                         new CookieOptions
@@ -69,7 +84,7 @@ public class TokenValidationMiddleware
 
                     context.Response.Cookies.Append("RefreshToken", tokens.refreshToken, new CookieOptions
                         {
-                            Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(600),
+                            Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(300),
                         }
                     );
                 }

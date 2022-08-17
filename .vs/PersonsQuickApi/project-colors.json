@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f0696bb0-b42f-4517-bf95-d21b6f69c513": {
+      "ProjectGuid": "f0696bb0-b42f-4517-bf95-d21b6f69c513",
+      "DisplayName": "AuthorizationAPI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

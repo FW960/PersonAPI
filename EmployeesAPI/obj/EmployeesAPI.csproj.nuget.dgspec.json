@@ -74,6 +74,10 @@
             },
             "NLog": {
               "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "NLog": {
+              "target": "Package",
               "version": "[5.*, )"
             },
             "NLog.Web.AspNetCore": {

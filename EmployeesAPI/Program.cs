@@ -1,4 +1,3 @@
-using System.Text;
 using System.Web.Http;
 using AutoMapper;
 using MySqlConnector;
@@ -9,7 +8,6 @@ using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Middlewares;
 using EmployeesAPI.Repositories.Persons;
-using EmployeesAPI.Services;
 using EmployeesAPI.Services.Persons;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -97,7 +95,7 @@ try
             ValidateAudience = true,
             ValidAudience = AuthOptions.AUDIENCE,
             ValidateLifetime = true,
-            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(true),
             ValidateIssuerSigningKey = true
         }
     );
@@ -113,7 +111,7 @@ try
         app.UseSwaggerUI();
     }
 
-    app.UseMiddleware<TokenValidationMiddleware>();
+    app.UseMiddleware<AuthMiddleware>();
     
     app.UseStaticFiles();
     

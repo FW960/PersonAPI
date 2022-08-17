@@ -23,7 +23,7 @@ public class AuthorizationController : Controller
     [HttpPost("employee")]
     public IActionResult AuthorizeEmployee([FromBody] MyAuthenticationRequest request)
     {
-        if (_employeeService.Authenticate(request, out TokenDTO token, HttpContext))
+        if (_employeeService.Authenticate(request, out TokenDTO token, HttpContext, false))
         {
             return Ok(token);
         }
@@ -35,7 +35,7 @@ public class AuthorizationController : Controller
     [HttpPost("admin")]
     public IActionResult AuthorizeAdmin([FromBody] MyAuthenticationRequest request)
     {
-        if (_adminService.Authenticate(request, out TokenDTO token, HttpContext))
+        if (_adminService.Authenticate(request, out TokenDTO token, HttpContext, false))
         {
             HttpContext.Response.Cookies.Append("MainTokens", token.token);
 
@@ -48,14 +48,14 @@ public class AuthorizationController : Controller
     }
 
     [AllowAnonymous]
-    [HttpGet("/admin/get-new-token")]
+    [HttpGet("admin/get-new-token")]
     public IActionResult GetNewTokenAdmin()
     {
         var refToken = HttpContext.Request.Headers["RefreshToken"];
         
-        if (ValidateToken.Admin(refToken, out MyAuthenticationRequest request))
+        if (ValidateToken.Admin(refToken, out MyAuthenticationRequest request, false))
         {
-            if (_adminService.Authenticate(request, out TokenDTO dto, HttpContext))
+            if (_adminService.Authenticate(request, out TokenDTO dto, HttpContext, true))
             {
                 HttpContext.Response.Headers.Add("Token", dto.token);
                 return Ok();

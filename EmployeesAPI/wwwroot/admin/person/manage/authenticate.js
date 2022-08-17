@@ -15,7 +15,7 @@ $(".sub-but").click(async function (e)
     if (!validateInput(login, pass))
         return;
 
-    resp = await fetch("https://localho.st:7001/authorize/admin", {
+    resp = await fetch("https://localhost:7001/authorize/admin", {
         method: "POST",
         mode: 'cors',
         cache: 'no-cache',

@@ -13,7 +13,7 @@ public class PersonsServices : IPersonsServices
     private readonly IMapper _mapperToDto;
 
     private IPersonsRepository _repository;
-    public ILogger<PersonsController> Logger { get; set; }
+    public ILogger<EmployeesController> Logger { get; set; }
 
     public PersonsServices(Mapper mapperFromDto, PersonsRepository repository, Mapper mapperToDto)
     {

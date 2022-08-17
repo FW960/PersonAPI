@@ -8,12 +8,19 @@ public class AuthOptions
     public const string ISSUER = "AuthServer";
     public const string AUDIENCE = "AudienceServer";
 
-    public const string KEY = @"THIS IS SOME VERY SECRET
+    public const string MainTokenKEY = @"THIS IS SOME VERY SECRET
             STRING!!! Im blue da ba dee da ba di da ba dee da ba di da d ba dee da ba
         di da ba dee";
 
-    public static SymmetricSecurityKey GetSymmetricSecurityKey()
+    public const string RefTokenKEY = @"THIS IS SOME VERY SECRET
+            STRING!!! Im blue da ba dee da ba di da ba dee da ba di da d ba dee da ba
+        di da ba dee boo";
+
+    public static SymmetricSecurityKey GetSymmetricSecurityKey(bool forMainToken)
     {
-        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
+        if (forMainToken)
+            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(MainTokenKEY));
+
+        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(RefTokenKEY));
     }
 }

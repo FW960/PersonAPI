@@ -8,7 +8,7 @@ namespace AuthorizationAPI.Services.Services;
 
 public class ValidateToken
 {
-    public static bool Admin(string token, out MyAuthenticationRequest request)
+    public static bool Admin(string token, out MyAuthenticationRequest request, bool forMainToken)
     {
         try
         {
@@ -21,7 +21,7 @@ public class ValidateToken
                 ValidateIssuerSigningKey = true,
                 ValidAudience = AuthOptions.AUDIENCE,
                 ValidIssuer = AuthOptions.ISSUER,
-                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey()
+                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(forMainToken)
             }, out SecurityToken validatedToken);
 
             var claimsReader = handler.ReadJwtToken(token);
