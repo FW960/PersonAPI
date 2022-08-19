@@ -1864,10 +1864,34 @@
           "lib/net40/WebActivatorEx.dll": {}
         }
       },
-      "EmployeesAPI/1.0.0": {
+      "AuthorizationAPI/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.7",
+          "Microsoft.IdentityModel.Tokens": "6.21.0",
+          "Microsoft.OpenApi": "1.2.3",
+          "MySqlConnector": "2.1.11",
+          "Swashbuckle.AspNetCore.Swagger": "6.4.0",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.4.0",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.4.0",
+          "System.IdentityModel.Tokens.Jwt": "6.21.0"
+        },
+        "compile": {
+          "bin/placeholder/AuthorizationAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AuthorizationAPI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "PersonsAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AuthorizationAPI": "1.0.0",
           "AutoMapper": "11.0.1",
           "IdentityServer4.EntityFramework": "4.1.2",
           "IdentityServer4.EntityFramework.Mysql": "1.0.0-rc2",
@@ -1887,10 +1911,10 @@
           "System.IdentityModel.Tokens.Jwt": "6.21.0"
         },
         "compile": {
-          "bin/placeholder/EmployeesAPI.dll": {}
+          "bin/placeholder/PersonsAPI.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EmployeesAPI.dll": {}
+          "bin/placeholder/PersonsAPI.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -6293,17 +6317,22 @@
         "webactivatorex.nuspec"
       ]
     },
-    "EmployeesAPI/1.0.0": {
+    "AuthorizationAPI/1.0.0": {
       "type": "project",
-      "path": "../EmployeesAPI/EmployeesAPI.csproj",
-      "msbuildProject": "../EmployeesAPI/EmployeesAPI.csproj"
+      "path": "../AuthorizationAPI/AuthorizationAPI.csproj",
+      "msbuildProject": "../AuthorizationAPI/AuthorizationAPI.csproj"
+    },
+    "PersonsAPI/1.0.0": {
+      "type": "project",
+      "path": "../PersonsAPI/PersonsAPI.csproj",
+      "msbuildProject": "../PersonsAPI/PersonsAPI.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "AutoMapper >= 11.0.1",
-      "EmployeesAPI >= 1.0.0",
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.7"
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.7",
+      "PersonsAPI >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6333,8 +6362,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj": {
-              "projectPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\EmployeesAPI\\EmployeesAPI.csproj"
+            "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj": {
+              "projectPath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\PersonsAPI.csproj"
             }
           }
         }

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeesAPI", "EmployeesAPI\EmployeesAPI.csproj", "{5E3BD3C4-1C9B-4D4C-A7A8-64D3074D0326}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonsAPI", "PersonsAPI\PersonsAPI.csproj", "{5E3BD3C4-1C9B-4D4C-A7A8-64D3074D0326}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F2B0BE3A-9043-4064-9708-8AB06B0461E0}"
 EndProject
