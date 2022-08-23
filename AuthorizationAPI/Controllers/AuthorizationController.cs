@@ -1,5 +1,6 @@
 ﻿using AuthorizationAPI.Entities;
 using AuthorizationAPI.Services.Services;
+using EmployeesAPI.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,15 +33,27 @@ public class AuthorizationController : Controller
     }
 
     [AllowAnonymous]
+    [HttpGet("employee/get-new-token")]
+    public IActionResult GetNewTokenEmployee([FromHeader(Name = "RefreshToken")] string token)
+    {
+        if (JwtToken.Validate(token, out MyAuthenticationRequest request, false,
+                EmployeeAuthOptions.GetSymmetricSecurityKey))
+        {
+            if (_employeeService.Authenticate(request, out TokenDTO dto, HttpContext, true))
+            {
+                return Ok(dto);
+            }
+        }
+
+        return NotFound();
+    }
+
+    [AllowAnonymous]
     [HttpPost("admin")]
     public IActionResult AuthorizeAdmin([FromBody] MyAuthenticationRequest request)
     {
         if (_adminService.Authenticate(request, out TokenDTO token, HttpContext, false))
         {
-            HttpContext.Response.Cookies.Append("MainTokens", token.token);
-
-            HttpContext.Response.Cookies.Append("RefreshTokens", token.refreshToken);
-
             return Ok(token);
         }
 
@@ -49,19 +62,18 @@ public class AuthorizationController : Controller
 
     [AllowAnonymous]
     [HttpGet("admin/get-new-token")]
-    public IActionResult GetNewTokenAdmin()
+    public IActionResult GetNewTokenAdmin([FromHeader(Name = "RefreshToken")] string token)
     {
-        var refToken = HttpContext.Request.Headers["RefreshToken"];
-        
-        if (ValidateToken.Admin(refToken, out MyAuthenticationRequest request, false))
+        if (JwtToken.Validate(token, out MyAuthenticationRequest request, false,
+                AdminAuthOptions.GetSymmetricSecurityKey))
         {
             if (_adminService.Authenticate(request, out TokenDTO dto, HttpContext, true))
             {
                 HttpContext.Response.Headers.Add("Token", dto.token);
                 return Ok();
-            }    
+            }
         }
-        
+
         return BadRequest();
     }
 }

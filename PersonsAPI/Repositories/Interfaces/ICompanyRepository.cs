@@ -9,9 +9,7 @@ public interface ICompanyRepository
 
     public bool Delete(int id);
 
-    public bool TryFind(int id, out Company company);
-
-    public bool TryFind(out Company company, int inn);
+    public bool TryFind(int inn, out Company company);
 
     public bool Update(Company company);
 }

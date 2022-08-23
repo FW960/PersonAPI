@@ -4,13 +4,13 @@ namespace EmployeesAPI.Services.Interfaces;
 
 public interface ICompanyServices
 {
-    public bool Add(CompanyDto companyDto);
+    public bool Add(CompanyDto company);
 
     public bool Update(CompanyDto companyDto);
 
-    public bool Delete(int id);
+    public bool TryFind(int inn, out CompanyDto companyDto);
 
-    public bool TryFind(int id, out CompanyDto companyDto);
-
-    public bool TryFind(out CompanyDto companyDto, int inn);
+    public bool Delete(int inn);
+    
+    
 }

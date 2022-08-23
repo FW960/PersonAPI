@@ -21,29 +21,8 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             var cmd = _connection.CreateCommand();
 
-            cmd.CommandText = "SELECT id FROM companies WHERE inn = @inn";
-
-            cmd.Parameters.AddWithValue("@inn", customer.Company.Inn);
-            
-            var reader = cmd.ExecuteReader();
-
-            int comp_id = -1;
-
-            while (reader.Read())
-                comp_id = reader.GetInt32(0);
-            
-            reader.Close();
-
-            if (comp_id == -1)
-            {
-                _connection.Close();
-
-                throw new Exception($"Haven't found company with {customer.Company.Inn}");
-            }
-                
-
             cmd.CommandText =
-                "INSERT INTO customers (firstname, lastname, email, post, company_id) values(@fName, @lName, @email, @post, @comp_id)";
+                "INSERT INTO customers (firstname, lastname, email, post, company_inn) values(@fName, @lName, @email, @post, @comp_inn)";
 
             cmd.Parameters.AddWithValue("@fName", customer.FirstName);
 
@@ -53,7 +32,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             cmd.Parameters.AddWithValue("@post", customer.Post);
 
-            cmd.Parameters.AddWithValue("@comp_id", comp_id);
+            cmd.Parameters.AddWithValue("@comp_inn", customer.Company.Inn);
 
             cmd.Prepare();
 
@@ -80,7 +59,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                "UPDATE customers SET FirstName = @fName, LastName = @lName, Email = @email, company_id = @com_id, post = @post WHERE Id = @id";
+                "UPDATE customers SET FirstName = @fName, LastName = @lName, Email = @email, company_inn = @com_inn, post = @post WHERE Id = @id";
 
             cmd.Parameters.AddWithValue("@id", id);
 
@@ -90,7 +69,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             cmd.Parameters.AddWithValue("@email", personEntity.Email);
 
-            cmd.Parameters.AddWithValue("@com_id", personEntity.Company.Id);
+            cmd.Parameters.AddWithValue("@com_inn", personEntity.Company.Inn);
 
             cmd.Parameters.AddWithValue("@post", personEntity.Post);
 
@@ -117,9 +96,9 @@ public class CustomerRepository : IPersonsRepository<Customer>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText = @"SELECT *
-            FROM customers
-            LEFT JOIN companies comp on customers.company_id = comp.id
-            LEFT JOIN customers c on comp.id = c.id WHERE customers.id = @id";
+         FROM customers
+         LEFT JOIN companies comp on customers.company_inn = comp.inn
+         LEFT JOIN customers cust on cust.id = comp.ceo_id WHERE customers.id = @id";
 
             cmd.Parameters.AddWithValue("@id", id);
 
@@ -136,20 +115,27 @@ public class CustomerRepository : IPersonsRepository<Customer>
                     LastName = reader.GetString(2),
                     Post = reader.GetString(3),
                     Email = reader.GetString(5),
-                    Company = new Company
+                };
+                try
+                {
+                    personEntity.Company = new Company
                     {
-                        Id = reader.GetInt32(6),
-                        Name = reader.GetString(7),
-                        Inn = reader.GetInt32(9),
+                        Name = reader.GetString(6),
+                        Inn = reader.GetInt32(8),
                         Ceo = new Ceo
                         {
-                            Id = reader.GetInt32(8),
-                            FirstName = reader.GetString(11),
-                            LastName = reader.GetString(12),
-                            Email = reader.GetString(15)
+                            Id = reader.GetInt32(7),
+                            FirstName = reader.GetString(10),
+                            LastName = reader.GetString(11),
+                            Email = reader.GetString(14)
                         }
-                    },
-                };
+                    };
+                }
+                catch
+                {
+                    return true;
+                }
+
                 return true;
             }
 
@@ -176,9 +162,9 @@ public class CustomerRepository : IPersonsRepository<Customer>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText = @"SELECT *
-            FROM customers
-            LEFT JOIN companies comp on customers.company_id = comp.id
-            LEFT JOIN customers c on comp.id = c.id WHERE c.lastname = @lName AND c.firstname = @fName";
+         FROM customers
+         LEFT JOIN companies comp on customers.company_inn = comp.inn
+         LEFT JOIN customers cust on cust.id = comp.ceo_id WHERE cust.lastname = @lName AND cust.firstname = @fName";
 
             cmd.CommandText = "SELECT * FROM employees ";
 
@@ -197,20 +183,28 @@ public class CustomerRepository : IPersonsRepository<Customer>
                     LastName = reader.GetString(2),
                     Post = reader.GetString(3),
                     Email = reader.GetString(5),
-                    Company = new Company
+                };
+
+                try
+                {
+                    personEntity.Company = new Company
                     {
-                        Id = reader.GetInt32(6),
-                        Name = reader.GetString(7),
-                        Inn = reader.GetInt32(9),
+                        Name = reader.GetString(6),
+                        Inn = reader.GetInt32(8),
                         Ceo = new Ceo
                         {
-                            Id = reader.GetInt32(8),
-                            FirstName = reader.GetString(11),
-                            LastName = reader.GetString(12),
-                            Email = reader.GetString(15)
+                            Id = reader.GetInt32(7),
+                            FirstName = reader.GetString(10),
+                            LastName = reader.GetString(11),
+                            Email = reader.GetString(14)
                         }
-                    },
-                };
+                    };
+                }
+                catch
+                {
+                    return true;
+                }
+
                 return true;
             }
 
@@ -240,7 +234,8 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.ExecuteNonQuery();
+            if (cmd.ExecuteNonQuery() == 0)
+                return false;
 
             return true;
         }
@@ -264,9 +259,9 @@ public class CustomerRepository : IPersonsRepository<Customer>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText = @"SELECT *
-            FROM customers
-            LEFT JOIN companies comp on customers.company_id = comp.id
-            LEFT JOIN customers c on comp.id = c.id WHERE customers.id >= @startIndex AND customers.Id <= @endIndex";
+         FROM customers
+         LEFT JOIN companies comp on customers.company_inn = comp.inn
+         LEFT JOIN customers cust on cust.id = comp.ceo_id WHERE customers.id >= @startIndex AND customers.Id <= @endIndex";
 
             cmd.Parameters.AddWithValue("@startIndex", startIndex);
 
@@ -278,27 +273,33 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             while (reader.Read())
             {
-                list.Add(new Customer
+                var personEntity = new Customer
                 {
                     Id = reader.GetInt32(0),
                     FirstName = reader.GetString(1),
                     LastName = reader.GetString(2),
                     Post = reader.GetString(3),
                     Email = reader.GetString(5),
-                    Company = new Company
+                };
+
+                try
+                {
+                    personEntity.Company = new Company
                     {
-                        Id = reader.GetInt32(6),
-                        Name = reader.GetString(7),
-                        Inn = reader.GetInt32(9),
+                        Name = reader.GetString(6),
+                        Inn = reader.GetInt32(8),
                         Ceo = new Ceo
                         {
-                            Id = reader.GetInt32(8),
-                            FirstName = reader.GetString(11),
-                            LastName = reader.GetString(12),
-                            Email = reader.GetString(15)
+                            Id = reader.GetInt32(7),
+                            FirstName = reader.GetString(10),
+                            LastName = reader.GetString(11),
+                            Email = reader.GetString(14)
                         }
-                    },
-                });
+                    };
+                }
+                catch { }
+
+                list.Add(personEntity);
             }
 
             persons = list;

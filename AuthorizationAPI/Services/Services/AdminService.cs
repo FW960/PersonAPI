@@ -1,4 +1,5 @@
 ﻿using AuthorizationAPI.Entities;
+using EmployeesAPI.Entities;
 using EmployeesAPI.Services.Persons;
 using MySqlConnector;
 
@@ -43,17 +44,21 @@ public class AdminService : IService
             {
                 token = new TokenDTO
                 {
-                    token = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(15), true),
-                    refreshToken = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(300), false)
+                    token = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(15),
+                        true, AdminAuthOptions.GetSymmetricSecurityKey),
+                    refreshToken = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(300),
+                        false, AdminAuthOptions.GetSymmetricSecurityKey)
                 };
 
                 var cookieOptions = new CookieOptions
                 {
                     HttpOnly = true,
-                    Expires = DateTime.UtcNow.AddDays(7)
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(15)
                 };
 
                 context.Response.Cookies.Append("MainToken", token.refreshToken, cookieOptions);
+
+                cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(300);
 
                 context.Response.Cookies.Append("RefreshToken", token.refreshToken, cookieOptions);
 

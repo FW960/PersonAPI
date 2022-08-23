@@ -7,7 +7,9 @@ using EmployeesAPI.DatabaseContext;
 using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Middlewares;
+using EmployeesAPI.Repositories;
 using EmployeesAPI.Repositories.Persons;
+using EmployeesAPI.Services;
 using EmployeesAPI.Services.Persons;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -33,13 +35,14 @@ try
     
     string connectionString = builder.Configuration.GetConnectionString("default");
 
-    MapperConfiguration ceoMappeConfig = new MapperConfiguration(conf => conf.CreateMap<CeoDto, Ceo>());
+    MapperConfiguration ceoMapperConfig = new MapperConfiguration(conf => conf.CreateMap<CeoDto, Ceo>());
 
-    Mapper ceoMapperFromDto = new Mapper(ceoMappeConfig);
+    Mapper ceoMapperFromDto = new Mapper(ceoMapperConfig);
 
-    ceoMappeConfig = new MapperConfiguration(conf => conf.CreateMap<Ceo, CeoDto>());
+    ceoMapperConfig = new MapperConfiguration(conf => conf.CreateMap<Ceo, CeoDto>());
 
-    Mapper ceoMapperToDto = new Mapper(ceoMappeConfig);
+    Mapper ceoMapperToDto = new Mapper(ceoMapperConfig);
+    
 
     MySqlConnection connection = new MySqlConnection {ConnectionString = connectionString};
 
@@ -50,11 +53,15 @@ try
         new CustomersServices(new CustomerRepository(connection),
             ceoMapperFromDto, ceoMapperToDto);
 
+    CompanyServices companyServices = new CompanyServices(new CompanyRepository(connection));
+
     builder.Services.AddDbContext<PersonsDbContext>();
 
     builder.Services.AddSingleton(employeeServices);
 
     builder.Services.AddSingleton(customersServices);
+
+    builder.Services.AddSingleton(companyServices);
 
     builder.Services.AddControllers();
 

@@ -36,9 +36,7 @@ public class CustomersServices : ICustomerServices
                 Email = personDto.Email,
                 Company = new Company
                 {
-                    Inn = personDto.Company.Inn,
-                    Ceo = _ceoMapperFromDto.Map<Ceo>(personDto.Company.Ceo),
-                    Name = personDto.Company.Name
+                    Inn = personDto.CompanyInn,
                 }
             };
 
@@ -70,9 +68,7 @@ public class CustomersServices : ICustomerServices
                 Email = personDto.Email,
                 Company = new Company
                 {
-                    Inn = personDto.Company.Inn,
-                    Ceo = _ceoMapperFromDto.Map<Ceo>(personDto.Company.Ceo),
-                    Name = personDto.Company.Name
+                    Inn = personDto.CompanyInn,
                 }
             };
 
@@ -105,13 +101,15 @@ public class CustomersServices : ICustomerServices
                     LastName = person.LastName,
                     Post = person.Post,
                     Email = person.Email,
-                    Company = new CompanyDto
-                    {
-                        Inn = person.Company.Inn,
-                        Ceo = _ceoMapperToDto.Map<CeoDto>(person.Company.Ceo),
-                        Name = person.Company.Name
-                    }
                 };
+                try
+                {
+                    personDto.CompanyInn = person.Company.Inn;
+                }
+                catch
+                {
+                    Logger.LogInformation($"Customer {personDto.Email} doesn't have company");
+                }
 
                 return result;
             }
@@ -150,12 +148,7 @@ public class CustomersServices : ICustomerServices
                     LastName = person.LastName,
                     Post = person.Post,
                     Email = person.Email,
-                    Company = new CompanyDto
-                    {
-                        Inn = person.Company.Inn,
-                        Ceo = _ceoMapperToDto.Map<CeoDto>(person.Company.Ceo),
-                        Name = person.Company.Name
-                    }
+                    CompanyInn = person.Company.Inn
                 };
 
                 return result;
@@ -223,12 +216,7 @@ public class CustomersServices : ICustomerServices
                         LastName = person.LastName,
                         Post = person.Post,
                         Email = person.Email,
-                        Company = new CompanyDto
-                        {
-                            Inn = person.Company.Inn,
-                            Ceo = _ceoMapperToDto.Map<CeoDto>(person.Company.Ceo),
-                            Name = person.Company.Name
-                        }
+                        CompanyInn = person.Company.Inn
                     });
                 }
 

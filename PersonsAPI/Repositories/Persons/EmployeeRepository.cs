@@ -188,7 +188,8 @@ public class EmployeeRepository : IPersonsRepository<Employee>
 
             cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.ExecuteNonQuery();
+            if (cmd.ExecuteNonQuery() == 0)
+                return false;
 
             return true;
         }

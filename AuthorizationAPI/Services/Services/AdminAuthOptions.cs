@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace EmployeesAPI.Entities;
 
-public class AuthOptions
+public class AdminAuthOptions
 {
     public const string ISSUER = "AuthServer";
     public const string AUDIENCE = "AudienceServer";
