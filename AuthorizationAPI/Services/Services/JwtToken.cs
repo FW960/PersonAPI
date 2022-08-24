@@ -8,7 +8,8 @@ namespace AuthorizationAPI.Services.Services;
 
 public static class JwtToken
 {
-    public static string GenerateToken(string login, string password, TimeSpan time, bool forMainToken, Func<bool, SymmetricSecurityKey> symmetricKey)
+    public static string GenerateToken(string login, string password, TimeSpan time, bool forMainToken,
+        Func<bool, SymmetricSecurityKey> symmetricKey, string ISSUER, string AUDIENCE)
     {
         var claims = new List<Claim>
         {
@@ -16,8 +17,8 @@ public static class JwtToken
             new Claim("Password", password)
         };
         var jwt = new JwtSecurityToken(
-            issuer: AdminAuthOptions.ISSUER,
-            audience: AdminAuthOptions.AUDIENCE,
+            issuer: ISSUER,
+            audience: AUDIENCE,
             claims: claims,
             expires: DateTime.UtcNow.Add(time),
             signingCredentials: new SigningCredentials(symmetricKey.Invoke(forMainToken),
@@ -25,8 +26,9 @@ public static class JwtToken
 
         return new JwtSecurityTokenHandler().WriteToken(jwt);
     }
-    
-    public static bool Validate(string token, out MyAuthenticationRequest request, bool forMainToken, Func<bool, SymmetricSecurityKey> auth)
+
+    public static bool Validate(string token, out MyAuthenticationRequest request, bool forMainToken,
+        Func<bool, SymmetricSecurityKey> auth, string ISSUER, string AUDIENCE)
     {
         try
         {
@@ -37,8 +39,8 @@ public static class JwtToken
                 ValidateAudience = true,
                 ValidateIssuer = true,
                 ValidateIssuerSigningKey = true,
-                ValidAudience = AdminAuthOptions.AUDIENCE,
-                ValidIssuer = AdminAuthOptions.ISSUER,
+                ValidAudience = AUDIENCE,
+                ValidIssuer = ISSUER,
                 IssuerSigningKey = auth.Invoke(forMainToken)
             }, out SecurityToken validatedToken);
 

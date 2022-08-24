@@ -45,9 +45,11 @@ public class AdminService : IService
                 token = new TokenDTO
                 {
                     token = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(15),
-                        true, AdminAuthOptions.GetSymmetricSecurityKey),
+                        true, AdminAuthOptions.GetSymmetricSecurityKey, AUDIENCE: AdminAuthOptions.AUDIENCE,
+                        ISSUER: AdminAuthOptions.ISSUER),
                     refreshToken = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(300),
-                        false, AdminAuthOptions.GetSymmetricSecurityKey)
+                        false, AdminAuthOptions.GetSymmetricSecurityKey, AUDIENCE: AdminAuthOptions.AUDIENCE,
+                        ISSUER: AdminAuthOptions.ISSUER)
                 };
 
                 var cookieOptions = new CookieOptions

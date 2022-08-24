@@ -37,7 +37,8 @@ public class AuthorizationController : Controller
     public IActionResult GetNewTokenEmployee([FromHeader(Name = "RefreshToken")] string token)
     {
         if (JwtToken.Validate(token, out MyAuthenticationRequest request, false,
-                EmployeeAuthOptions.GetSymmetricSecurityKey))
+                EmployeeAuthOptions.GetSymmetricSecurityKey, AUDIENCE: EmployeeAuthOptions.AUDIENCE,
+                ISSUER: EmployeeAuthOptions.ISSUER))
         {
             if (_employeeService.Authenticate(request, out TokenDTO dto, HttpContext, true))
             {
@@ -65,7 +66,8 @@ public class AuthorizationController : Controller
     public IActionResult GetNewTokenAdmin([FromHeader(Name = "RefreshToken")] string token)
     {
         if (JwtToken.Validate(token, out MyAuthenticationRequest request, false,
-                AdminAuthOptions.GetSymmetricSecurityKey))
+                AdminAuthOptions.GetSymmetricSecurityKey, AUDIENCE: AdminAuthOptions.AUDIENCE,
+                ISSUER: AdminAuthOptions.ISSUER))
         {
             if (_adminService.Authenticate(request, out TokenDTO dto, HttpContext, true))
             {

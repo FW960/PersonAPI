@@ -44,9 +44,11 @@ public class EmployeeService : IService
                 token = new TokenDTO
                 {
                     token = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(15),
-                        true, EmployeeAuthOptions.GetSymmetricSecurityKey),
+                        true, EmployeeAuthOptions.GetSymmetricSecurityKey, AUDIENCE: EmployeeAuthOptions.AUDIENCE,
+                        ISSUER: EmployeeAuthOptions.ISSUER),
                     refreshToken = JwtToken.GenerateToken(request.Login, request.Password, TimeSpan.FromMinutes(300),
-                        false, EmployeeAuthOptions.GetSymmetricSecurityKey)
+                        false, EmployeeAuthOptions.GetSymmetricSecurityKey, AUDIENCE: EmployeeAuthOptions.AUDIENCE,
+                        ISSUER: EmployeeAuthOptions.ISSUER)
                 };
 
                 var cookieOptions = new CookieOptions
