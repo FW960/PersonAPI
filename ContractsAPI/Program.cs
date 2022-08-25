@@ -1,4 +1,4 @@
-using AuthorizationAPI.Services.Services;
+using ContractsAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;

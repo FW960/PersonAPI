@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eiYDYeyBuOBfVtikCClYZg1JcKCY+QEWoLgw/Py93NovrWLC5CMgaMNrYoQRN+OUSOTd98nk9I/QjGTFX1/JEg==",
+  "dgSpecHash": "DJhOa/L93VpcY1JSoB3X8cd8pGlxHCjEXvzAR0onO8HPiOgDZ0yc3yl8iBR3IvKJOsUW5gRFgVW+SixbLvb03A==",
   "success": true,
   "projectFilePath": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\ContractsAPI\\ContractsAPI.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\windo\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.10.0\\microsoft.identitymodel.protocols.openidconnect.6.10.0.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.10.0\\microsoft.identitymodel.tokens.6.10.0.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\windo\\.nuget\\packages\\mysqlconnector\\2.1.11\\mysqlconnector.2.1.11.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
     "C:\\Users\\windo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",

@@ -15,7 +15,6 @@ public class EmployeeRepository : IPersonsRepository<Employee>
 
     public bool Add(Employee employee)
     {
-
         try
         {
             _connection.Open();
@@ -23,7 +22,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                "INSERT INTO employees (FirstName, LastName, Email, Password, Age) values(@fName, @lName, @email, @password, @age)";
+                "INSERT INTO employees (FirstName, LastName, Email, Password, Age, Group) values(@fName, @lName, @email, @password, @age, @group)";
 
             cmd.Parameters.AddWithValue("@fName", employee.FirstName);
 
@@ -34,6 +33,8 @@ public class EmployeeRepository : IPersonsRepository<Employee>
             cmd.Parameters.AddWithValue("@password", employee.Password);
 
             cmd.Parameters.AddWithValue("@age", employee.Age);
+
+            cmd.Parameters.AddWithValue("@group", employee.Group);
 
             cmd.Prepare();
 
@@ -51,7 +52,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
         }
     }
 
-    public bool Update(int id, Employee customer)
+    public bool Update(int id, Employee employee)
     {
         try
         {
@@ -60,19 +61,21 @@ public class EmployeeRepository : IPersonsRepository<Employee>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                "UPDATE employees SET FirstName = @fName, LastName = @lName, Email = @email, Password = @password, Age = @age WHERE Id = @id";
+                "UPDATE employees SET FirstName = @fName, LastName = @lName, Email = @email, Password = @password, Age = @age, Group = @group WHERE Id = @id";
 
             cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.Parameters.AddWithValue("@fName", customer.FirstName);
+            cmd.Parameters.AddWithValue("@fName", employee.FirstName);
 
-            cmd.Parameters.AddWithValue("@lName", customer.LastName);
+            cmd.Parameters.AddWithValue("@lName", employee.LastName);
 
-            cmd.Parameters.AddWithValue("@email", customer.Email);
+            cmd.Parameters.AddWithValue("@email", employee.Email);
 
-            cmd.Parameters.AddWithValue("@password", customer.Password);
+            cmd.Parameters.AddWithValue("@password", employee.Password);
 
-            cmd.Parameters.AddWithValue("@age", customer.Age);
+            cmd.Parameters.AddWithValue("@age", employee.Age);
+            
+            cmd.Parameters.AddWithValue("@group", employee.Group);
 
             cmd.ExecuteNonQuery();
 
@@ -113,7 +116,8 @@ public class EmployeeRepository : IPersonsRepository<Employee>
                     LastName = reader.GetString(2),
                     Email = reader.GetString(3),
                     Age = reader.GetInt32(4),
-                    Password = reader.GetString(5)
+                    Password = reader.GetString(5),
+                    Group = reader.GetInt32(6)
                 };
                 return true;
             }
@@ -157,7 +161,8 @@ public class EmployeeRepository : IPersonsRepository<Employee>
                     LastName = reader.GetString(2),
                     Email = reader.GetString(3),
                     Age = reader.GetInt32(4),
-                    Password = reader.GetString(5)
+                    Password = reader.GetString(5),
+                    Group = reader.GetInt32(6)
                 };
                 return true;
             }
@@ -220,7 +225,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
 
             var reader = cmd.ExecuteReader();
 
-            List<Employee> list = new List<Employee>(); 
+            List<Employee> list = new List<Employee>();
 
             while (reader.Read())
             {
@@ -231,7 +236,8 @@ public class EmployeeRepository : IPersonsRepository<Employee>
                     LastName = reader.GetString(2),
                     Email = reader.GetString(3),
                     Age = reader.GetInt32(4),
-                    Password = reader.GetString(5)
+                    Password = reader.GetString(5),
+                    Group = reader.GetInt32(6)
                 });
             }
 

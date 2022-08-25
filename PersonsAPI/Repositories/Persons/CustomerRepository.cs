@@ -50,7 +50,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
         }
     }
 
-    public bool Update(int id, Customer personEntity)
+    public bool Update(int id, Customer employee)
     {
         try
         {
@@ -63,15 +63,15 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.Parameters.AddWithValue("@fName", personEntity.FirstName);
+            cmd.Parameters.AddWithValue("@fName", employee.FirstName);
 
-            cmd.Parameters.AddWithValue("@lName", personEntity.LastName);
+            cmd.Parameters.AddWithValue("@lName", employee.LastName);
 
-            cmd.Parameters.AddWithValue("@email", personEntity.Email);
+            cmd.Parameters.AddWithValue("@email", employee.Email);
 
-            cmd.Parameters.AddWithValue("@com_inn", personEntity.Company.Inn);
+            cmd.Parameters.AddWithValue("@com_inn", employee.Company.Inn);
 
-            cmd.Parameters.AddWithValue("@post", personEntity.Post);
+            cmd.Parameters.AddWithValue("@post", employee.Post);
 
             cmd.ExecuteNonQuery();
 

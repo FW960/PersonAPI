@@ -6,7 +6,7 @@ public interface IPersonsRepository<T> where T : BasePersonEntity
 {
     public bool Add(T employee);
 
-    public bool Update(int id, T personEntity);
+    public bool Update(int id, T employee);
 
     public bool TryFind(int id, out T personEntity);
 

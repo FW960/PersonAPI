@@ -1,12 +1,14 @@
-﻿namespace ContractsAPI.Repositories;
+﻿using ContractsAPI.Entities;
+
+namespace ContractsAPI.Repositories;
 
 public interface IContractsRepository
 {
-    public bool Add(string name);
+    public bool Add(Contract contract, out int id);
 
-    public bool Update(string name);
+    public bool Update(Contract contract);
 
-    public bool Get(string name);
+    public bool Get(DateTime creationDate, int companyInn, out Contract contract);
 
-    public bool Delete(string name);
+    public bool Delete(DateTime creationDate, int companyInn);
 }
