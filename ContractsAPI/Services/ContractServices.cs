@@ -1,5 +1,4 @@
 ﻿using ContractsAPI.Dtos;
-using ContractsAPI.Entities;
 using ContractsAPI.Repositories;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
@@ -15,22 +14,21 @@ public class ContractServices : IContractsServices
         _repository = repository;
     }
 
-    public bool Get(HttpContext context, DateTime creationDate, int companyInn)
+    public bool Get(HttpContext context, string companyInn, int id)
     {
         try
         {
-            if (_repository.Get(creationDate, companyInn, out Contract contract))
+            if (_repository.Get(companyInn, id, out ContractDto contract))
             {
-                if (ContractDirectories.TryFindContract(contract.CompanyInn, contract.Id, contract.CreationDate,
-                        out string path))
+                if (ContractFile.TryFindContractFilePath(contract.CompanyInn, contract.Id, out string path))
                 {
                     IFileInfo fileInfo = new PhysicalFileInfo(new FileInfo(path));
-                
+
                     ContractFile.Send(context.Response, fileInfo);
 
                     return true;
                 }
-            
+
                 return false;
             }
             else
@@ -44,11 +42,9 @@ public class ContractServices : IContractsServices
 
             return false;
         }
-        
-        
     }
 
-    public bool Add(HttpContext context, ContractDto contractDto, out int id)
+    public bool Add(HttpContext context, ContractDto contract, out int id)
     {
         try
         {
@@ -57,16 +53,6 @@ public class ContractServices : IContractsServices
                 id = -1;
                 return false;
             }
-
-            Contract contract = new Contract
-            {
-                Id = contractDto.Id,
-                CompanyInn = contractDto.CompanyInn,
-                CreationDate = contractDto.CreationDate,
-                LastUpdateDate = contractDto.CreationDate,
-                EmployeesGroup = contractDto.EmployeesGroup,
-                isDone = false
-            };
 
             if (_repository.Add(contract, out id))
             {
@@ -77,6 +63,8 @@ public class ContractServices : IContractsServices
                 var contractFile = context.Request.Form.Files[0];
 
                 ContractFile.Copy(path, contractFile, contract.CreationDate);
+
+                ContractFile.Send(context.Response, new PhysicalFileInfo(new FileInfo(path)));
 
                 return true;
             }
@@ -93,17 +81,69 @@ public class ContractServices : IContractsServices
             id = -1;
             return false;
         }
-        
-        
     }
 
-    public bool Update(HttpContext context, DateTime creationDate, int companyInn)
+    public bool Update(HttpContext context, ContractDto dto)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (ContractFile.Validate(context.Request.Form.Files))
+            {
+                if (_repository.Update(dto))
+                {
+                    string directoryPath = ContractDirectories.FindContractDirectory(dto.CompanyInn, dto.Id);
+
+                    var file = context.Request.Form.Files[0];
+
+                    if (ContractFile.TryFindContractFilePath(dto.CompanyInn, dto.Id, out string path))
+                    {
+                        ContractFile.Delete(path);
+                    }
+
+                    ContractFile.Copy(directoryPath, file, dto.CreationDate);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
-    public bool Delete(HttpContext context, DateTime creationDate, int companyInn)
+    public bool Delete(HttpContext context, ContractDto contract)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (_repository.Delete(contract.CreationDate, contract.CompanyInn, contract.Id))
+            {
+                if (ContractFile.TryFindContractFilePath(contract.CompanyInn, contract.Id, out string path))
+                {
+                    ContractFile.Delete(path);
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            //todo Logger
+
+            return false;
+        }
     }
 }

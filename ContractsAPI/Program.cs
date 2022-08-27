@@ -1,7 +1,9 @@
+using ContractsAPI.Repositories;
 using ContractsAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MySqlConnector;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +58,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     }
 );
 builder.Services.AddAuthorization();
+
+var connectionString = builder.Configuration.GetConnectionString("default");
+
+MySqlConnection connection = new MySqlConnection(connectionString);
+
+ContractRepository repository = new ContractRepository(connection);
+
+ContractServices services = new ContractServices(repository);
+
+builder.Services.AddSingleton(services);
 
 var app = builder.Build();
 

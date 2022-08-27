@@ -4,11 +4,11 @@ namespace ContractsAPI.Services;
 
 public interface IContractsServices
 {
-    public bool Get(HttpContext context, DateTime creationDate, int companyInn);
+    public bool Get(HttpContext context, string companyInn, int id);
 
-    public bool Add(HttpContext context, ContractDto contractDto, out int id);
+    public bool Add(HttpContext context, ContractDto contract, out int id);
 
-    public bool Update(HttpContext context, DateTime creationDate, int companyInn);
+    public bool Update(HttpContext context, ContractDto dto);
 
-    public bool Delete(HttpContext context, DateTime creationDate, int companyInn);
+    public bool Delete(HttpContext context, ContractDto dto);
 }

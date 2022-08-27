@@ -1,0 +1,130 @@
+.wrapper {
+  border: 1px solid #000;
+  border-collapse: collapse;
+  border-radius: 5px;
+}
+
+.wrapper header {
+  display: block;
+  height: 100px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 30px;
+}
+
+.wrapper header .headerText {
+  margin: auto;
+  font-size: 20px;
+  text-align: center;
+}
+
+.wrapper main .formsWrapper {
+  margin: 0 auto;
+  width: calc(100% - 200px);
+}
+
+.wrapper main .formsWrapper .formWrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper main .formsWrapper .formWrapper .form {
+  border: 1px solid #000;
+  min-width: 500px;
+  min-height: 350px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .formDescription .formDescriptionP {
+  text-align: center;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements {
+  width: 200px;
+  height: 250px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .controllerElementDescription {
+  border-bottom: 1px solid #000;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .controllerElementDescription .controllerElementDescriptionP {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements:nth-child(n+2) {
+  border-left: 1px solid #000;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .inputElements {
+  margin-top: 10px;
+  height: calc(100% - 75px);
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .inputElements .input {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 3 auto;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .inputElements .input input[type=number]::-webkit-inner-spin-button,
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .inputElements .input input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.wrapper main .formsWrapper .formWrapper .form .controllerElementsWrapper .controllerElements .button-send {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #000;
+  margin: 5px auto;
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.wrapper main .formsWrapper .formWrapper .outputWrapper {
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
+.wrapper main .formsWrapper .formWrapper .outputWrapper .outputText {
+  resize: vertical;
+  width: 100%;
+  min-height: 50px;
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  border: 0px solid #000;
+}
+
+.wrapper footer {
+  margin-top: 30px;
+  border-collapse: collapse;
+  height: 100px;
+  border-top: 1px solid #000;
+}
+/*# sourceMappingURL=authorized.css.map */

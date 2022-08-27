@@ -15,19 +15,56 @@ public static class ContractFile
         return true;
     }
 
-    public static void Copy(string path, IFormFile contractFile, DateTime creationDate)
+    public static string Copy(string path, IFormFile contractFile, DateTime creationDate)
     {
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
         contractFile.CopyTo(fileStream);
-        
+
         fileStream.Close();
 
-        File.Move(path + $@"\{contractFile.Name}", path + $@"\{creationDate}");
+        File.Move(path + $@"\{contractFile.Name}", path + $@"\Contract {creationDate}");
+
+        return path + $@"\{creationDate}";
+    }
+
+    public static bool Delete(string path)
+    {
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+
+            return true;
+        }
+
+        return false;
     }
 
     public static void Send(HttpResponse response, IFileInfo fileInfo)
     {
+        response.Headers.ContentDisposition = $"attachment; filename={fileInfo.Name}";
+
         response.SendFileAsync(fileInfo, CancellationToken.None);
+    }
+
+
+    public static bool TryFindContractFilePath(string compannyInn, int contractId, out string path)
+    {
+        string directoryPath =
+            $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsApi\Contracts\{compannyInn}\{contractId}";
+
+        var files = Directory.EnumerateFileSystemEntries(directoryPath);
+
+        foreach (var file in files)
+        {
+            if (file.Contains("Contract"))
+            {
+                path = file;
+                return true;
+            }
+        }
+
+        path = "";
+        return false;
     }
 }

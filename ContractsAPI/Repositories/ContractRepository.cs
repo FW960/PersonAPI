@@ -1,4 +1,4 @@
-﻿using ContractsAPI.Entities;
+﻿using ContractsAPI.Dtos;
 using MySqlConnector;
 
 namespace ContractsAPI.Repositories;
@@ -12,7 +12,7 @@ public class ContractRepository : IContractsRepository
         _connection = connection;
     }
 
-    public bool Add(Contract contract, out int id)
+    public bool Add(ContractDto contract, out int id)
     {
         try
         {
@@ -21,14 +21,12 @@ public class ContractRepository : IContractsRepository
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                @"INSERT INTO contracts (company_inn, creation_date, last_update_date ,is_done, employees_group) 
-                VALUES (@inn, @creat_date, @update_date, @isDone, @group)";
+                @"INSERT INTO contracts (company_inn, creation_date, is_done, employees_group) 
+                VALUES (@inn, @creat_date, @isDone, @group)";
 
             cmd.Parameters.AddWithValue("@inn", contract.CompanyInn);
 
             cmd.Parameters.AddWithValue("@creat_date", contract.CreationDate);
-
-            cmd.Parameters.AddWithValue("@update_date", contract.CreationDate);
 
             cmd.Parameters.AddWithValue("@isDone", contract.isDone);
 
@@ -38,9 +36,15 @@ public class ContractRepository : IContractsRepository
             {
                 cmd.CommandText = "SELECT Id FROM contracts WHERE company_inn = @creat AND company_inn = @inn";
 
+                cmd.Parameters.AddWithValue("@creat", contract.CreationDate);
+
+                cmd.Parameters.AddWithValue("@inn", contract.CompanyInn);
+
                 var reader = cmd.ExecuteReader();
 
                 id = reader.GetInt32(0);
+
+                reader.Close();
 
                 return true;
             }
@@ -58,7 +62,7 @@ public class ContractRepository : IContractsRepository
         }
     }
 
-    public bool Update(Contract contract)
+    public bool Update(ContractDto contract)
     {
         try
         {
@@ -67,8 +71,7 @@ public class ContractRepository : IContractsRepository
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                @"UPDATE contracts SET is_done = @isDone, employees_group = @group
-                WHERE company_inn = @inn AND creation_date = @creat";
+                @"UPDATE contracts SET is_done = @isDone, employees_group = @group, company_inn = @inn, creation_date = @creat WHERE id = @id";
 
             cmd.Parameters.AddWithValue("@isDone", contract.isDone);
 
@@ -77,6 +80,8 @@ public class ContractRepository : IContractsRepository
             cmd.Parameters.AddWithValue("@inn", contract.CompanyInn);
 
             cmd.Parameters.AddWithValue("@creat", contract.CreationDate);
+
+            cmd.Parameters.AddWithValue("@id", contract.Id);
 
             cmd.ExecuteNonQuery();
 
@@ -92,7 +97,7 @@ public class ContractRepository : IContractsRepository
         }
     }
 
-    public bool Get(DateTime creationDate, int companyInn, out Contract contract)
+    public bool Get(string companyInn, int id, out ContractDto contract)
     {
         try
         {
@@ -101,31 +106,30 @@ public class ContractRepository : IContractsRepository
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                "SELECT * FROM contracts company_inn WHERE company_inn = @inn AND creation_date = @creat";
+                "SELECT * FROM contracts company_inn WHERE company_inn = @inn AND id = @id";
 
             cmd.Parameters.AddWithValue("@inn", companyInn);
 
-            cmd.Parameters.AddWithValue("@creat", creationDate);
+            cmd.Parameters.AddWithValue("@id", id);
 
             var reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                contract = new Contract
+                contract = new ContractDto
                 {
                     Id = reader.GetInt32(0),
                     CompanyInn = reader.GetString(1),
                     CreationDate = reader.GetDateTime(2),
-                    LastUpdateDate = reader.GetDateTime(3),
-                    isDone = reader.GetBoolean(4),
-                    EmployeesGroup = reader.GetInt32(5)
+                    isDone = reader.GetBoolean(3),
+                    EmployeesGroup = reader.GetInt32(4)
                 };
 
                 return true;
             }
 
-            contract = new Contract();
-            
+            contract = new ContractDto();
+
             return false;
         }
         catch (Exception e)
@@ -138,7 +142,7 @@ public class ContractRepository : IContractsRepository
         }
     }
 
-    public bool Delete(DateTime creationDate, int companyInn)
+    public bool Delete(DateTime creationDate, string companyInn, int id)
     {
         try
         {
@@ -146,11 +150,13 @@ public class ContractRepository : IContractsRepository
 
             var cmd = _connection.CreateCommand();
 
-            cmd.CommandText = "DELETE FROM contracts WHERE company_inn = @inn AND creation_date = @creat";
+            cmd.CommandText = "DELETE FROM contracts WHERE company_inn = @inn AND creation_date = @creat AND id = @id";
 
             cmd.Parameters.AddWithValue("@inn", companyInn);
 
             cmd.Parameters.AddWithValue("@creat", creationDate);
+
+            cmd.Parameters.AddWithValue("@id", id);
 
             cmd.ExecuteNonQuery();
 

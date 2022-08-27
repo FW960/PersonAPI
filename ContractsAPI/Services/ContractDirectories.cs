@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ContractsAPI.Services;
+﻿namespace ContractsAPI.Services;
 
 public static class ContractDirectories
 {
@@ -16,6 +14,14 @@ public static class ContractDirectories
         return path;
     }
 
+    
+    public static string FindContractDirectory(string companyInn, int contractId)
+    {
+        string directoryPath = $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\Contracts\{companyInn}\{contractId}";
+
+        return directoryPath;
+    }
+    
     public static void CreateCompanyDirectory(string companyInn)
     {
         string path = $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\Contracts\{companyInn}";
@@ -24,16 +30,5 @@ public static class ContractDirectories
             return;
 
         Directory.CreateDirectory(path);
-    }
-
-    public static bool TryFindContract(string compannyInn, int contractId, DateTime creationDate, out string path)
-    {
-        path =
-            $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsApi\Contracts\{compannyInn}\{contractId}\{creationDate}";
-
-        if (File.Exists(path))
-            return true;
-        
-        return false;
     }
 }

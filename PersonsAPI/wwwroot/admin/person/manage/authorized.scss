@@ -1,0 +1,127 @@
+$formWidth: 500px;
+$formHeight: 350px;
+
+.wrapper {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    border-radius: 5px;
+
+    header {
+        display: block;
+        height: 100px;
+        border-bottom: 1px solid #000;
+        margin-bottom: 30px;
+        border-collapse: collapse;
+        box-sizing: border-box;
+        padding-top: 30px;
+
+        .headerText {
+            margin: auto;
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+
+    main {
+        .formsWrapper {
+            margin: 0 auto;
+            width: calc(100% - 200px);
+
+
+            .formWrapper {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                display: flex;
+
+                .form {
+                    .formDescription {
+                        .formDescriptionP {
+                            text-align: center;
+                        }
+                    }
+
+                    border: 1px solid #000;
+                    min-width: $formWidth;
+                    min-height: $formHeight;
+                    margin: 0 auto;
+                    border-radius: 5px;
+
+                    .controllerElementsWrapper {
+                        display: flex;
+
+                        .controllerElements {
+                            .controllerElementDescription {
+                                border-bottom: 1px solid #000;
+
+                                .controllerElementDescriptionP {
+                                    margin: 5px 0;
+                                    text-align: center;
+                                }
+                            }
+
+                            width: 200px;
+                            height: 250px;
+                            border-top: 1px solid #000;
+                            border-bottom: 1px solid #000;
+
+                            &:nth-child(n+2) {
+
+                                border-left: 1px solid #000;
+                            }
+
+                            .inputElements {
+                                margin-top: 10px;
+                                height: calc(100% - 75px);
+
+                                .input {
+                                    width: fit-content;
+                                    margin: 3 auto;
+
+                                    input[type=number]::-webkit-inner-spin-button,
+                                    input[type=number]::-webkit-outer-spin-button {
+                                        -webkit-appearance: none;
+                                        margin: 0;
+                                    }
+                                }
+                            }
+
+                            .button-send {
+                                width: fit-content;
+                                height: fit-content;
+                                border: 1px solid #000;
+                                margin: 5px auto;
+                                padding: 3px 5px;
+                                border-radius: 5px;
+                                font-size: 16px;
+                                cursor: pointer;
+                            }
+                        }
+
+                    }
+                }
+
+                .outputWrapper {
+                    min-height: fit-content;
+                    .outputText {
+                        resize: vertical;
+                        width: 100%;
+                        min-height: 50px;
+                        padding: 5px;
+                        margin: 0;
+                        text-align: center;
+                        border: 0px solid #000;
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    footer {
+        margin-top: 30px;
+        border-collapse: collapse;
+        height: 100px;
+        border-top: 1px solid #000;
+    }
+}

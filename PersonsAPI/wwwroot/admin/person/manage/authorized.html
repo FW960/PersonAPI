@@ -1,12 +1,291 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees</title>
+    <link rel="stylesheet" href="authorized.css">
+    <title>Entities</title>
 </head>
+
 <body>
-    Hello
+    <div class="wrapper">
+        <header>
+            <p class="headerText">Admin panel</p>
+        </header>
+        <main>
+            <div class="formsWrapper">
+                <div class="formWrapper">
+                    <div class="form">
+                        <div class="formDescription">
+                            <p class="formDescriptionP">Customers managment form</p>
+                        </div>
+                        <div class="controllerElementsWrapper">
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Add</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="customerFirstNameInputAdd" type="text"
+                                            placeholder="FirstName"></div>
+                                    <div class="input"><input class="customerLastnameInputAdd" type="text"
+                                            placeholder="LastName"></div>
+                                    <div class="input"><input class="customerEmailInputAdd" type="email"
+                                            placeholder="Email"></div>
+                                    <div class="input"><input type="number" class="number customerCompanyInnInputAdd"
+                                            placeholder="Company inn"></div>
+                                    <div class="input"><input type="text" class="customerPostInputAdd"
+                                            placeholder="Post"></div>
+                                </div>
+                                <div class="button-send customers-add-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input type="number" class="customerInputGetById number"
+                                            placeholder="Customer Id"></div>
+                                </div>
+                                <div class="button-send customer-get-by-id-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="customerFirstNameInputGetByName" type="text"
+                                            placeholder="FirstName"></div>
+                                    <div class="input"><input class="customerLastnameInputGetByName" type="text"
+                                            placeholder="LastName"></div>
+                                </div>
+                                <div class="button-send customers-get-by-name-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get range</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="number customerStartIdInputFindRage" type="number"
+                                            placeholder="Start Id">
+                                    </div>
+                                    <div class="input"><input class="number customerEndIdInputFindRage" type="number"
+                                            placeholder="End Id">
+                                    </div>
+                                </div>
+                                <div class="button-send customers-get-by-id-range-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Update</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input type="number" class="number customerIdInputUpdate"
+                                            placeholder="Customer Id"></div>
+                                    <div class="input"><input class="customerFirstNameInputUpdate" type="text"
+                                            placeholder="FirstName"></div>
+                                    <div class="input"><input class="customerLastnameInputUpdate" type="text"
+                                            placeholder="LastName"></div>
+                                    <div class="input"><input class="customerEmailInputUpdate" type="email"
+                                            placeholder="Email"></div>
+                                    <div class="input"><input type="number" class="number customerCompanyInnInputUpdate"
+                                            placeholder="Company inn"></div>
+                                    <div class="input"><input type="text" class="customerPostInputUpdate"
+                                            placeholder="Post"></div>
+                                </div>
+                                <div class="button-send customers-update-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Delete</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input type="number" class="number customersIdInputDelete"
+                                            placeholder="Id"></div>
+                                </div>
+                                <div class="button-send customers-delete-button">Send</div>
+                            </div>
+                        </div>
+                        <div class="customersOutput outputWrapper">
+                            <textarea class="customersOutputText outputText" readonly></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="formWrapper">
+                    <div class="form">
+                        <div class="formDescription">
+                            <p class="formDescriptionP">Employees managment form</p>
+                        </div>
+                        <div class="controllerElementsWrapper">
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Add</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="employeeFirstNameInputAdd" type="text"
+                                            placeholder="FirstName"></div>
+                                    <div class="input"><input class="employeeLastnameInputAdd" type="text"
+                                            placeholder="LastName"></div>
+                                    <div class="input"><input class="employeeEmailInputAdd" type="email"
+                                            placeholder="Email"></div>
+                                    <div class="input"><input class="number employeeAgeInputAdd" type="number"
+                                            placeholder="Age"></div>
+                                    <div class="input"><input type="number" class="number employeeGroupInputAdd"
+                                            placeholder="Employee group"></div>
+                                    <div class="input"><input type="text" class="employeeInputPasswordAdd"
+                                            placeholder="Employee password"></div>
+                                </div>
+                                <div class="button-send employee-add-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input type="number" class="employeeIdInputGetById number"
+                                            placeholder="Employee Id"></div>
+                                </div>
+                                <div class="button-send employee-get-by-id-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="employeeFirstNameInputGetByName" type="text"
+                                            placeholder="FirstName"></div>
+                                    <div class="input"><input class="employeeLastnameInputGetByName" type="text"
+                                            placeholder="LastName"></div>
+                                </div>
+                                <div class="button-send employee-get-by-name-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get range</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="number employeeStartIdInputFindRage" type="number"
+                                            placeholder="Start Id">
+                                    </div>
+                                    <div class="input"><input class="number employeeEndIdInputFindRage" type="number"
+                                            placeholder="End Id">
+                                    </div>
+                                </div>
+                                <div class="button-send employee-get-by-id-range-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Update</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input type="number" class="number employeeIdInputUpdate"
+                                            placeholder="Employee Id"></div>
+                                    <div class="input"><input class="employeeFirstNameInputUpdate" type="text"
+                                            placeholder="FirstName"></div>
+                                    <div class="input"><input class="employeeLastnameInputUpdate" type="text"
+                                            placeholder="LastName"></div>
+                                    <div class="input"><input class="employeeEmailInputUpdate" type="email"
+                                            placeholder="Email"></div>
+                                    <div class="input"><input class="number employeeAgeInputUpdate" type="number"
+                                            placeholder="Age"></div>
+                                    <div class="input"><input type="number" class="number employeeGroupInputUpdate"
+                                            placeholder="Employee group"></div>
+                                    <div class="input"><input type="text" class="employeeInputPasswordUpdate"
+                                            placeholder="Employee password"></div>
+                                </div>
+                                <div class="button-send employee-update-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Delete</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input type="number" class="number employeeInputIdDelete"
+                                            placeholder="Employee id"></div>
+                                </div>
+                                <div class="button-send employee-delete-button">Send</div>
+                            </div>
+                        </div>
+                        <div class="customersOutput outputWrapper">
+                            <textarea class="customersOutputText outputText" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="formWrapper">
+                    <div class="form">
+                        <div class="formDescription">
+                            <p class="formDescriptionP">Companies managment form</p>
+                        </div>
+                        <div class="controllerElementsWrapper">
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Add
+                                    </p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputAdd number" type="number"
+                                            placeholder="Company inn"></div>
+                                    <div class="input"><input class="companyNameInputAdd" placeholder="Company Name"
+                                            type="text"></div>
+                                </div>
+                                <div class="button-send company-add-button">Send</div>
+
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get
+                                    </p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputGet number" type="number"
+                                            placeholder="Company inn">
+                                    </div>
+                                </div>
+                                <div class="button-send company-get-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">
+                                        Update</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputUpdate number" type="number"
+                                            placeholder="Company inn">
+                                        <div class="input"><input class="companyNameInputUpdate" type="text"
+                                                placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="input"><input class="companyCeoInputUpdate" type="number"
+                                            placeholder="Ceo id">
+                                    </div>
+                                </div>
+                                <div class="button-send company-update-button">Send</div>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">
+                                        Delete</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputDelete number" type="number"
+                                            placeholder="Company inn">
+                                    </div>
+                                </div>
+                                <div class="button-send company-delete-button">Send</div>
+                            </div>
+                        </div>
+                        <div class="companieOutput outputWrapper">
+                            <textarea class="companieOutputText outputText" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+        <footer></footer>
+    </div>
 </body>
 <script src="authorized.js"></script>
+
 </html>
