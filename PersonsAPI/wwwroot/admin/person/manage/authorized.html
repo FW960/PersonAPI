@@ -37,7 +37,7 @@
                                     <div class="input"><input type="text" class="customerPostInputAdd"
                                             placeholder="Post"></div>
                                 </div>
-                                <div class="button-send customers-add-button">Send</div>
+                                <button class="button-send customers-add-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -47,7 +47,7 @@
                                     <div class="input"><input type="number" class="customerInputGetById number"
                                             placeholder="Customer Id"></div>
                                 </div>
-                                <div class="button-send customer-get-by-id-button">Send</div>
+                                <button class="button-send customer-get-by-id-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -59,7 +59,8 @@
                                     <div class="input"><input class="customerLastnameInputGetByName" type="text"
                                             placeholder="LastName"></div>
                                 </div>
-                                <div class="button-send customers-get-by-name-button">Send</div>
+                                <button class="button-send customers-get-by-name-button">Send
+                                </button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -73,7 +74,7 @@
                                             placeholder="End Id">
                                     </div>
                                 </div>
-                                <div class="button-send customers-get-by-id-range-button">Send</div>
+                                <button class="button-send customers-get-by-id-range-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -93,7 +94,7 @@
                                     <div class="input"><input type="text" class="customerPostInputUpdate"
                                             placeholder="Post"></div>
                                 </div>
-                                <div class="button-send customers-update-button">Send</div>
+                                <button class="button-send customers-update-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -103,7 +104,7 @@
                                     <div class="input"><input type="number" class="number customersIdInputDelete"
                                             placeholder="Id"></div>
                                 </div>
-                                <div class="button-send customers-delete-button">Send</div>
+                                <button class="button-send customers-delete-button">Send</button>
                             </div>
                         </div>
                         <div class="customersOutput outputWrapper">
@@ -136,7 +137,7 @@
                                     <div class="input"><input type="text" class="employeeInputPasswordAdd"
                                             placeholder="Employee password"></div>
                                 </div>
-                                <div class="button-send employee-add-button">Send</div>
+                                <button class="button-send employee-add-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -146,7 +147,7 @@
                                     <div class="input"><input type="number" class="employeeIdInputGetById number"
                                             placeholder="Employee Id"></div>
                                 </div>
-                                <div class="button-send employee-get-by-id-button">Send</div>
+                                <button class="button-send employee-get-by-id-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -158,7 +159,7 @@
                                     <div class="input"><input class="employeeLastnameInputGetByName" type="text"
                                             placeholder="LastName"></div>
                                 </div>
-                                <div class="button-send employee-get-by-name-button">Send</div>
+                                <button class="button-send employee-get-by-name-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -172,7 +173,7 @@
                                             placeholder="End Id">
                                     </div>
                                 </div>
-                                <div class="button-send employee-get-by-id-range-button">Send</div>
+                                <button class="button-send employee-get-by-id-range-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -194,7 +195,7 @@
                                     <div class="input"><input type="text" class="employeeInputPasswordUpdate"
                                             placeholder="Employee password"></div>
                                 </div>
-                                <div class="button-send employee-update-button">Send</div>
+                                <button class="button-send employee-update-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -204,7 +205,7 @@
                                     <div class="input"><input type="number" class="number employeeInputIdDelete"
                                             placeholder="Employee id"></div>
                                 </div>
-                                <div class="button-send employee-delete-button">Send</div>
+                                <button class="button-send employee-delete-button">Send</button>
                             </div>
                         </div>
                         <div class="customersOutput outputWrapper">
@@ -229,7 +230,7 @@
                                     <div class="input"><input class="companyNameInputAdd" placeholder="Company Name"
                                             type="text"></div>
                                 </div>
-                                <div class="button-send company-add-button">Send</div>
+                                <button class="button-send company-add-button">Send</button>
 
                             </div>
                             <div class="controllerElements">
@@ -242,7 +243,7 @@
                                             placeholder="Company inn">
                                     </div>
                                 </div>
-                                <div class="button-send company-get-button">Send</div>
+                                <button class="button-send company-get-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -260,7 +261,7 @@
                                             placeholder="Ceo id">
                                     </div>
                                 </div>
-                                <div class="button-send company-update-button">Send</div>
+                                <button class="button-send company-update-button">Send</button>
                             </div>
                             <div class="controllerElements">
                                 <div class="controllerElementDescription">
@@ -282,10 +283,28 @@
                 </div>
 
             </div>
+
         </main>
         <footer></footer>
     </div>
-</body>
-<script src="authorized.js"></script>
+    <div class="form-auth-wrapper">
+        <div class="form-auth">
+            <p>Please authorize again</p>
+            <div class="inp-email-wrap"><input class="inp-email" autocomplete="email" type="email" name="email"
+                    placeholder="email@smth.com"></div>
+            <div class="inp-pass-wrap"><input class="inp-pass" autocomplete="current-password" type="password"
+                    placeholder="qwerty12345">
+            </div>
+
+            <div class="but-wrap">
+                <div class="sub-but">Send</div>
+                <div class="res-but">Reset</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module" src="authorized.js"></script>
+    <script src="jquery.js"></script>
 
 </html>

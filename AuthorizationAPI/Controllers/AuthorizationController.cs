@@ -71,7 +71,7 @@ public class AuthorizationController : Controller
         {
             if (_adminService.Authenticate(request, out TokenDTO dto, HttpContext, true))
             {
-                HttpContext.Response.Headers.Add("Token", dto.token);
+                Response.Headers.Append("Token", dto.token);
                 return Ok();
             }
         }

@@ -10,12 +10,10 @@ $(".sub-but").click(async function (e)
 
     let pass = $(".inp-pass").val();
 
-    let resp;
-
     if (!validateInput(login, pass))
         return;
 
-    resp = await fetch("https://localhost:7001/authorize/admin", {
+    let resp = await fetch("https://localhost:7001/authorize/admin", {
         method: "POST",
         mode: 'cors',
         cache: 'no-cache',

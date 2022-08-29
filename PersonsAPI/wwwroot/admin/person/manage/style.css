@@ -3,36 +3,20 @@
   width: -moz-fit-content;
   width: fit-content;
   margin: 200px auto 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
-
 .wrapper .inp-email-wrap {
   margin-bottom: 30px;
 }
-
 .wrapper .inp-pass-wrap {
   margin-bottom: 15px;
 }
-
 .wrapper .but-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-between;
 }
-
 .wrapper .but-wrap .sub-but {
   border-radius: 5px;
   text-align: center;
@@ -41,7 +25,6 @@
   width: 50px;
   height: 20px;
 }
-
 .wrapper .but-wrap .res-but {
   border-radius: 5px;
   text-align: center;
@@ -50,7 +33,6 @@
   width: 50px;
   height: 20px;
 }
-
 .wrapper .but-wrap .testBut {
   border-radius: 5px;
   text-align: center;
@@ -59,22 +41,18 @@
   width: 50px;
   height: 20px;
 }
-
 .wrapper .but-wrap .sub-but:hover {
   background-color: gray;
 }
-
 .wrapper .but-wrap .res-but:hover {
   background-color: gray;
 }
-
 .wrapper .welcome-page {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
 }
-
 .wrapper .welcome-page .welcome-text {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -85,7 +63,6 @@
   padding: 5px;
   font-size: large;
 }
-
 .wrapper .welcome-page .continue-but {
   margin: 0 auto;
   border-radius: 5px;
@@ -103,8 +80,6 @@
   height: fit-content;
   padding: 2px;
 }
-
 .wrapper .welcome-page .continue-but:hover {
   background-color: gray;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

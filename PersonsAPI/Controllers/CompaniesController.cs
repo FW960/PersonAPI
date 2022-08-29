@@ -30,7 +30,7 @@ public class CompaniesController : BaseController
         }
     }
     [Authorize]
-    [HttpPost("update")]
+    [HttpPut("update")]
     public IActionResult Update([FromBody] CompanyDto companyDto)
     {
         if (_services.Update(companyDto))

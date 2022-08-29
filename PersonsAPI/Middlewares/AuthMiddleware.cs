@@ -87,6 +87,7 @@ public class AuthMiddleware
                             Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(300),
                         }
                     );
+
                 }
                 else
                 {
