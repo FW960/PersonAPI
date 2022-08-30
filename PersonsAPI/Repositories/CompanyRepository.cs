@@ -21,28 +21,30 @@ public class CompanyRepository : ICompanyRepository
 
             var cmd = _connection.CreateCommand();
 
-            cmd.CommandText = "SELECT id FROM customers WHERE company_inn = @comp_inn AND post = 'CEO'";
-
-            cmd.Parameters.AddWithValue("@comp_inn", company.Inn);
-
-            var reader = cmd.ExecuteReader();
-
-            if (!reader.Read())
-            {
-                throw new Exception($"Haven't found CEO for company {company.Inn}");
-            }
-            
-            int ceoId = reader.GetInt32(0);
-
-            reader.Close();
-
-            cmd.CommandText = "INSERT INTO companies (name, ceo_id, inn) VALUES (@name, @ceo_id, @inn)";
-
-            cmd.Parameters.AddWithValue("@name", company.Name);
+            cmd.CommandText = "SELECT * FROM customers WHERE company_inn = @inn AND POST = 'CEO'";
 
             cmd.Parameters.AddWithValue("@inn", company.Inn);
 
-            cmd.Parameters.AddWithValue("@ceo_id", ceoId);
+            var reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                int ceoId = reader.GetInt32(0);
+                
+                reader.Close();
+                
+                cmd.CommandText = "INSERT INTO companies (name, inn, ceo_id) VALUES (@name, @inn, @ceo_id)";
+
+                cmd.Parameters.AddWithValue("ceo_id", ceoId);
+            }
+            else
+            {
+                reader.Close();
+                
+                cmd.CommandText = "INSERT INTO companies (name, inn) VALUES (@name, @inn)";    
+            }
+
+            cmd.Parameters.AddWithValue("@name", company.Name);
 
             cmd.ExecuteNonQuery();
 
@@ -58,7 +60,7 @@ public class CompanyRepository : ICompanyRepository
         }
     }
 
-    public bool Delete(int inn)
+    public bool Delete(string inn)
     {
         try
         {
@@ -85,7 +87,7 @@ public class CompanyRepository : ICompanyRepository
         }
     }
 
-    public bool TryFind(int inn, out Company company)
+    public bool TryFind(string inn, out Company company)
     {
         try
         {

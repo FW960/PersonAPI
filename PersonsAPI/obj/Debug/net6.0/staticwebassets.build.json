@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bUEOc1EFwhFuCcGo1nDXxKmufhyQq0IoOdH/+JCEX6Y=",
+  "Hash": "/RZ5tw+W+/ycK7v53KSC8/QCXwt/Gt+VPmRDBOwXoFk=",
   "Source": "PersonsAPI",
   "BasePath": "_content/PersonsAPI",
   "Mode": "Default",
@@ -114,23 +114,6 @@
       "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authorized.html"
     },
     {
-      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\admin\\person\\manage\\authorized.js",
-      "SourceId": "PersonsAPI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\",
-      "BasePath": "_content/PersonsAPI",
-      "RelativePath": "admin/person/manage/authorized.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authorized.js"
-    },
-    {
       "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\admin\\person\\manage\\authorized.scss",
       "SourceId": "PersonsAPI",
       "SourceType": "Discovered",
@@ -146,6 +129,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\authorized.scss"
+    },
+    {
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\admin\\person\\manage\\companies.js",
+      "SourceId": "PersonsAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\",
+      "BasePath": "_content/PersonsAPI",
+      "RelativePath": "admin/person/manage/companies.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\companies.js"
+    },
+    {
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\admin\\person\\manage\\customers.js",
+      "SourceId": "PersonsAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\",
+      "BasePath": "_content/PersonsAPI",
+      "RelativePath": "admin/person/manage/customers.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\person\\manage\\customers.js"
     },
     {
       "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\PersonsAPI\\wwwroot\\admin\\person\\manage\\jquery.js",

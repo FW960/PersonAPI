@@ -30,10 +30,10 @@ public class CompaniesController : BaseController
         }
     }
     [Authorize]
-    [HttpPut("update")]
-    public IActionResult Update([FromBody] CompanyDto companyDto)
+    [HttpPut("update/new-ceo/id={id:int}")]
+    public IActionResult Update([FromBody] CompanyDto companyDto, [FromRoute] int id)
     {
-        if (_services.Update(companyDto))
+        if (_services.Update(companyDto, id))
         {
             return Ok();
         }
@@ -43,8 +43,8 @@ public class CompaniesController : BaseController
         }
     }
     [Authorize]
-    [HttpGet("get/by/inn={inn:int}")]
-    public IActionResult GetByInn([FromRoute] int inn)
+    [HttpGet("get/by/inn={inn:alpha}")]
+    public IActionResult GetByInn([FromRoute] string inn)
     {
         if (_services.TryFind(inn, out CompanyDto companyDto))
         {
@@ -58,7 +58,7 @@ public class CompaniesController : BaseController
 
     [Authorize]
     [HttpDelete("delete/by/inn={inn:int}")]
-    public IActionResult Delete([FromRoute] int inn)
+    public IActionResult Delete([FromRoute] string inn)
     {
         if (_services.Delete(inn))
         {

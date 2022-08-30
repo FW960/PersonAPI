@@ -121,7 +121,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                     personEntity.Company = new Company
                     {
                         Name = reader.GetString(6),
-                        Inn = reader.GetInt32(8),
+                        Inn = reader.GetString(8),
                         Ceo = new Ceo
                         {
                             Id = reader.GetInt32(7),
@@ -164,9 +164,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
             cmd.CommandText = @"SELECT *
          FROM customers
          LEFT JOIN companies comp on customers.company_inn = comp.inn
-         LEFT JOIN customers cust on cust.id = comp.ceo_id WHERE cust.lastname = @lName AND cust.firstname = @fName";
-
-            cmd.CommandText = "SELECT * FROM employees ";
+         LEFT JOIN customers cust on cust.id = comp.ceo_id WHERE customers.lastname = @lName AND customers.firstname = @fName";
 
             cmd.Parameters.AddWithValue("@lName", lastName);
 
@@ -190,7 +188,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                     personEntity.Company = new Company
                     {
                         Name = reader.GetString(6),
-                        Inn = reader.GetInt32(8),
+                        Inn = reader.GetString(8),
                         Ceo = new Ceo
                         {
                             Id = reader.GetInt32(7),
@@ -202,7 +200,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                 }
                 catch
                 {
-                    return true;
+                    return false;
                 }
 
                 return true;
@@ -287,7 +285,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                     personEntity.Company = new Company
                     {
                         Name = reader.GetString(6),
-                        Inn = reader.GetInt32(8),
+                        Inn = reader.GetString(8),
                         Ceo = new Ceo
                         {
                             Id = reader.GetInt32(7),

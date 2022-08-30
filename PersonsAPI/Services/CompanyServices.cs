@@ -45,7 +45,7 @@ public class CompanyServices : ICompanyServices
         }
     }
 
-    public bool Update(CompanyDto companyDto)
+    public bool Update(CompanyDto companyDto, int ceoId)
     {
         Logger.LogInformation($"Trying to update {companyDto.Inn}");
 
@@ -53,7 +53,10 @@ public class CompanyServices : ICompanyServices
         {
             Inn = companyDto.Inn,
             Name = companyDto.Name,
-            Ceo = new Ceo()
+            Ceo = new Ceo
+            {
+                Id = ceoId
+            }
         };
 
         try
@@ -72,7 +75,7 @@ public class CompanyServices : ICompanyServices
         }
     }
 
-    public bool TryFind(int inn, out CompanyDto companyDto)
+    public bool TryFind(string inn, out CompanyDto companyDto)
     {
         Logger.LogInformation($"Trying to find company {inn}");
 
@@ -122,7 +125,7 @@ public class CompanyServices : ICompanyServices
         }
     }
 
-    public bool Delete(int inn)
+    public bool Delete(string inn)
     {
         try
         {

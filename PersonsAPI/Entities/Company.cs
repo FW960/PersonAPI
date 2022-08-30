@@ -5,6 +5,6 @@ namespace EmployeesAPI.Entities;
 public class Company
 {
     public string Name { get; set; }
-    public int Inn { get; set; }
+    public string Inn { get; set; }
     public Ceo Ceo { get; set; }
 }
