@@ -116,6 +116,74 @@
                 <div class="formWrapper">
                     <div class="form">
                         <div class="formDescription">
+                            <p class="formDescriptionP">Companies managment form</p>
+                        </div>
+                        <div class="controllerElementsWrapper">
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Add
+                                    </p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputAdd number" type="number"
+                                            placeholder="Company inn"></div>
+                                    <div class="input"><input class="companyNameInputAdd" placeholder="Company Name"
+                                            type="text"></div>
+                                </div>
+                                <button class="button-send company-add-button">Send</button>
+
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">Get
+                                    </p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputGet number" type="number"
+                                            placeholder="Company inn">
+                                    </div>
+                                </div>
+                                <button class="button-send company-get-button">Send</button>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">
+                                        Update</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputUpdate number" type="number"
+                                            placeholder="Company inn">
+                                        <div class="input"><input class="companyNameInputUpdate" type="text"
+                                                placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="input"><input class="companyCeoInputUpdate" type="number"
+                                            placeholder="Ceo id">
+                                    </div>
+                                </div>
+                                <button class="button-send company-update-button">Send</button>
+                            </div>
+                            <div class="controllerElements">
+                                <div class="controllerElementDescription">
+                                    <p class="controllerElementDescriptionP">
+                                        Delete</p>
+                                </div>
+                                <div class="inputElements">
+                                    <div class="input"><input class="companyInnInputDelete number" type="number"
+                                            placeholder="Company inn">
+                                    </div>
+                                </div>
+                                <div class="button-send company-delete-button">Send</div>
+                            </div>
+                        </div>
+                        <div class="companieOutput outputWrapper">
+                            <textarea class="companieOutputText outputText" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="formWrapper">
+                    <div class="form">
+                        <div class="formDescription">
                             <p class="formDescriptionP">Employees managment form</p>
                         </div>
                         <div class="controllerElementsWrapper">
@@ -208,76 +276,8 @@
                                 <button class="button-send employee-delete-button">Send</button>
                             </div>
                         </div>
-                        <div class="customersOutput outputWrapper">
-                            <textarea class="customersOutputText outputText" readonly></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="formWrapper">
-                    <div class="form">
-                        <div class="formDescription">
-                            <p class="formDescriptionP">Companies managment form</p>
-                        </div>
-                        <div class="controllerElementsWrapper">
-                            <div class="controllerElements">
-                                <div class="controllerElementDescription">
-                                    <p class="controllerElementDescriptionP">Add
-                                    </p>
-                                </div>
-                                <div class="inputElements">
-                                    <div class="input"><input class="companyInnInputAdd number" type="number"
-                                            placeholder="Company inn"></div>
-                                    <div class="input"><input class="companyNameInputAdd" placeholder="Company Name"
-                                            type="text"></div>
-                                </div>
-                                <button class="button-send company-add-button">Send</button>
-
-                            </div>
-                            <div class="controllerElements">
-                                <div class="controllerElementDescription">
-                                    <p class="controllerElementDescriptionP">Get
-                                    </p>
-                                </div>
-                                <div class="inputElements">
-                                    <div class="input"><input class="companyInnInputGet number" type="number"
-                                            placeholder="Company inn">
-                                    </div>
-                                </div>
-                                <button class="button-send company-get-button">Send</button>
-                            </div>
-                            <div class="controllerElements">
-                                <div class="controllerElementDescription">
-                                    <p class="controllerElementDescriptionP">
-                                        Update</p>
-                                </div>
-                                <div class="inputElements">
-                                    <div class="input"><input class="companyInnInputUpdate number" type="number"
-                                            placeholder="Company inn">
-                                        <div class="input"><input class="companyNameInputUpdate" type="text"
-                                                placeholder="Company Name">
-                                        </div>
-                                    </div>
-                                    <div class="input"><input class="companyCeoInputUpdate" type="number"
-                                            placeholder="Ceo id">
-                                    </div>
-                                </div>
-                                <button class="button-send company-update-button">Send</button>
-                            </div>
-                            <div class="controllerElements">
-                                <div class="controllerElementDescription">
-                                    <p class="controllerElementDescriptionP">
-                                        Delete</p>
-                                </div>
-                                <div class="inputElements">
-                                    <div class="input"><input class="companyInnInputDelete number" type="number"
-                                            placeholder="Company inn">
-                                    </div>
-                                </div>
-                                <div class="button-send company-delete-button">Send</div>
-                            </div>
-                        </div>
-                        <div class="companieOutput outputWrapper">
-                            <textarea class="companieOutputText outputText" readonly></textarea>
+                        <div class="employeesOutput outputWrapper">
+                            <textarea class="employeesOutputText outputText" readonly></textarea>
                         </div>
                     </div>
                 </div>
@@ -302,8 +302,7 @@
             </div>
         </div>
     </div>
-
-    <script type="module" src="customers.js"></script>
+    <script type="module" src="employees.js"></script>
     <script type="module" src="companies.js"></script>
     <script src="jquery.js"></script>
 

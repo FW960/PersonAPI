@@ -22,7 +22,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                "INSERT INTO employees (FirstName, LastName, Email, Password, Age, Group) values(@fName, @lName, @email, @password, @age, @group)";
+                "INSERT INTO employees (FirstName, LastName, Email, Password, Age, `Group`) values(@fName, @lName, @email, @password, @age, @group)";
 
             cmd.Parameters.AddWithValue("@fName", employee.FirstName);
 
@@ -35,8 +35,6 @@ public class EmployeeRepository : IPersonsRepository<Employee>
             cmd.Parameters.AddWithValue("@age", employee.Age);
 
             cmd.Parameters.AddWithValue("@group", employee.Group);
-
-            cmd.Prepare();
 
             cmd.ExecuteNonQuery();
 

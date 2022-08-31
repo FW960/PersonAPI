@@ -295,7 +295,9 @@ public class CustomerRepository : IPersonsRepository<Customer>
                         }
                     };
                 }
-                catch { }
+                catch
+                {
+                }
 
                 list.Add(personEntity);
             }

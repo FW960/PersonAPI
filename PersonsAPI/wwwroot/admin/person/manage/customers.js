@@ -111,9 +111,9 @@ $(".customer-get-by-id-button").click(async function e()
 document.querySelector(".customers-get-by-name-button").addEventListener("click", async function e()
 {
 
-    let firstName = document.querySelector(".customerFirstNameInputGetByName").value;
+    let firstName = parseInt(document.querySelector(".customerFirstNameInputGetByName").value);
 
-    let lastName = document.querySelector(".customerLastnameInputGetByName").value;
+    let lastName = parseInt(document.querySelector(".customerLastnameInputGetByName").value);
 
     let resp = await fetch(`https://localhost:7292/customers/get/by_full_name/agent/first_name=${firstName}/last_name=${lastName}`, {
         method: "GET",
@@ -150,6 +150,152 @@ document.querySelector(".customers-get-by-name-button").addEventListener("click"
         }
 
         document.querySelector(".customersOutputText").textContent = text;
+    }
+})
+
+document.querySelector(".customers-get-by-id-range-button").addEventListener("click", async function e()
+{
+    let customerStartIdInputFindRage = document.querySelector(".customerStartIdInputFindRage").value;
+
+    let customerEndIdInputFindRage = document.querySelector(".customerEndIdInputFindRage").value;
+
+    let resp = await fetch(`https://localhost:7292/customers/get/range/agents/skip_from=${customerStartIdInputFindRage}&take_until=${customerEndIdInputFindRage}`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+
+    if (resp.status == 401 && !authorizedTwoTimes)
+    {
+        authorizeAgain();
+        return;
+    } else if (resp.status == 401)
+    {
+        getNewToken();
+
+        resp = await fetch(`https://localhost:7292/customers/get/range/agents/skip_from=${customerStartIdInputFindRage}&take_until=${customerEndIdInputFindRage}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+    }
+
+    if (resp.ok)
+    {
+        let customers = await resp.json();
+
+        let outputText = document.querySelector(".customersOutputText");
+
+        let text = "";
+
+        customers.forEach(customer =>
+        {
+            for (const key in customer)
+            {
+                text += `${key} ${customer[key]}\n`
+            }
+            text += "\n";
+        });
+
+        outputText.textContent = text;
+    }
+})
+
+document.querySelector(".customers-update-button").addEventListener("click", async function e()
+{
+    let customerIdInputUpdate = document.querySelector(".customerIdInputUpdate").value;
+
+    let customerFirstNameInputUpdate = document.querySelector(".customerFirstNameInputUpdate").value;
+
+    let customerLastnameInputUpdate = document.querySelector(".customerLastnameInputUpdate").value;
+
+    let customerEmailInputUpdate = document.querySelector(".customerEmailInputUpdate").value;
+
+    let customerCompanyInnInputUpdate = document.querySelector(".customerCompanyInnInputUpdate").value;
+
+    let customerPostInputUpdate = document.querySelector(".customerPostInputUpdate").value;
+
+    let resp = await fetch(`https://localhost:7292/customers/update/agent/id=${customerIdInputUpdate}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(
+            {
+                FirstName: customerFirstNameInputUpdate,
+                LastName: customerLastnameInputUpdate,
+                CompanyInn: customerCompanyInnInputUpdate,
+                Post: customerPostInputUpdate,
+                Email: customerEmailInputUpdate
+            })
+    }
+    )
+
+    if (resp.status == 401 && !authorizedTwoTimes)
+    {
+        authorizeAgain();
+        return;
+    } else if (resp.status == 401)
+    {
+        getNewToken();
+
+        resp = await fetch(`https://localhost:7292/customers/update/agent/id=${customerIdInputUpdate}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                {
+                    FirstName: customerFirstNameInputUpdate,
+                    LastName: customerLastnameInputUpdate,
+                    Email: customerEmailInputUpdate,
+                    CompanyInn: customerCompanyInnInputUpdate,
+                    Post: customerPostInputUpdate
+                })
+        }
+        )
+    }
+
+    if (resp.ok)
+    {
+        document.querySelector(".customersOutputText").textContent = "Customer updated";
+    }
+})
+
+document.querySelector(".customers-delete-button").addEventListener("click", async function e()
+{
+    let customersIdInputDelete = document.querySelector(".customersIdInputDelete").value;
+
+    let resp = await fetch(`https://localhost:7292/customers/delete/agent/id=${customersIdInputDelete}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+
+    if (resp.status == 401 && !authorizedTwoTimes)
+    {
+        authorizeAgain();
+        return;
+    } else if (resp.status == 401)
+    {
+        resp = await fetch(`https://localhost:7292/customers/delete/agent/id=${customersIdInputDelete}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+    }
+
+    if (resp.ok)
+    {
+        document.querySelector(".customersOutputText").textContent = "Customer deleted";
     }
 })
 

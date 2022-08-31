@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeesAPI.Controllers.Persons;
 
 [Authorize]
-[Route("admin/employees/manage")]
+[Route("employees")]
 [ApiController]
 public class EmployeesController : BaseController
 {
@@ -21,7 +21,7 @@ public class EmployeesController : BaseController
 
     [Authorize]
     [HttpPost("add/agent")]
-    public IActionResult Add([FromBody] EmployeeDTO employee, [FromQuery] string password)
+    public IActionResult Add([FromBody] EmployeeDTO employee, [FromHeader] string password)
     {
         if (_services.Add(employee, password))
         {
@@ -68,7 +68,7 @@ public class EmployeesController : BaseController
     }
 
     [Authorize]
-    [HttpGet("get/by_last_name/agent/first_name={firstName:alpha}/last_name={lastName:alpha}")]
+    [HttpGet("get/by_full_name/agent/first_name={firstName:alpha}/last_name={lastName:alpha}")]
     public IActionResult TryFind([FromRoute] string firstName, [FromRoute] string lastName)
     {
         if (_services.TryFind(firstName, lastName, out EmployeeDTO dto))
