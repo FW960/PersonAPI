@@ -16,6 +16,7 @@ public class CompaniesController : BaseController
         _services = services;
         _services.Logger = logger;
     }
+
     [Authorize]
     [HttpPost("add")]
     public IActionResult Add([FromBody] CompanyDto companyDto)
@@ -24,11 +25,10 @@ public class CompaniesController : BaseController
         {
             return Ok();
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return NotFound();
     }
+
     [Authorize]
     [HttpPut("update/new-ceo/id={id:int}")]
     public IActionResult Update([FromBody] CompanyDto companyDto, [FromRoute] int id)
@@ -37,36 +37,31 @@ public class CompaniesController : BaseController
         {
             return Ok();
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return NotFound();
     }
+
     [Authorize]
-    [HttpGet("get/by/inn={inn:alpha}")]
+    [HttpGet("get/by/inn={inn}")]
     public IActionResult GetByInn([FromRoute] string inn)
     {
         if (_services.TryFind(inn, out CompanyDto companyDto))
         {
             return Ok(companyDto);
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return NotFound();
     }
 
     [Authorize]
-    [HttpDelete("delete/by/inn={inn:int}")]
+    [HttpDelete("delete/by/inn={inn}")]
     public IActionResult Delete([FromRoute] string inn)
     {
         if (_services.Delete(inn))
         {
             return Ok();
         }
-        else
-        {
-            return BadRequest();
-        }
+
+        return NotFound();
     }
 }

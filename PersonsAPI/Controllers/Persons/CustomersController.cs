@@ -26,7 +26,7 @@ public class CustomersController : BaseController
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [Authorize]
@@ -38,7 +38,7 @@ public class CustomersController : BaseController
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [Authorize]
@@ -50,7 +50,7 @@ public class CustomersController : BaseController
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [Authorize]

@@ -50,7 +50,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
         }
     }
 
-    public bool Update(int id, Employee employee)
+    public bool Update(Employee employee)
     {
         try
         {
@@ -59,9 +59,9 @@ public class EmployeeRepository : IPersonsRepository<Employee>
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                "UPDATE employees SET FirstName = @fName, LastName = @lName, Email = @email, Password = @password, Age = @age, Group = @group WHERE Id = @id";
+                "UPDATE employees SET FirstName = @fName, LastName = @lName, Email = @email, Password = @password, Age = @age, `Group` = @group WHERE Id = @id";
 
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@id", employee.Id);
 
             cmd.Parameters.AddWithValue("@fName", employee.FirstName);
 
@@ -89,7 +89,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
         }
     }
 
-    public bool TryFind(int id, out Employee personEntity)
+    public bool TryFind(int id, out Employee employee)
     {
         try
         {
@@ -107,7 +107,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
 
             while (reader.Read())
             {
-                personEntity = new Employee
+                employee = new Employee
                 {
                     Id = reader.GetInt32(0),
                     FirstName = reader.GetString(1),
@@ -120,7 +120,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
                 return true;
             }
 
-            personEntity = new Employee();
+            employee = new Employee();
 
             return false;
         }
@@ -134,7 +134,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
         }
     }
 
-    public bool TryFind(string firstName, string lastName, out Employee personEntity)
+    public bool TryFind(string firstName, string lastName, out Employee employee)
     {
         try
         {
@@ -152,7 +152,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
 
             while (reader.Read())
             {
-                personEntity = new Employee
+                employee = new Employee
                 {
                     Id = reader.GetInt32(0),
                     FirstName = reader.GetString(1),
@@ -165,7 +165,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
                 return true;
             }
 
-            personEntity = new Employee();
+            employee = new Employee();
 
             return false;
         }
@@ -207,7 +207,7 @@ public class EmployeeRepository : IPersonsRepository<Employee>
         }
     }
 
-    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<Employee> persons)
+    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<Employee> employee)
     {
         try
         {
@@ -239,9 +239,9 @@ public class EmployeeRepository : IPersonsRepository<Employee>
                 });
             }
 
-            persons = list;
+            employee = list;
 
-            if (persons.Count == 0)
+            if (employee.Count == 0)
             {
                 return false;
             }

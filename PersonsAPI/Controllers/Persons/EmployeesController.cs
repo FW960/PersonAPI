@@ -28,7 +28,7 @@ public class EmployeesController : BaseController
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [Authorize]
@@ -40,19 +40,19 @@ public class EmployeesController : BaseController
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [Authorize]
     [HttpPut("update/agent/id={id:int}")]
-    public IActionResult Update([FromRoute] int id, [FromBody] EmployeeDTO employee)
+    public IActionResult Update([FromRoute] int id, [FromHeader] string password, [FromBody] EmployeeDTO employee)
     {
-        if (_services.Update(id, employee))
+        if (_services.Update(id, password, employee))
         {
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [Authorize]

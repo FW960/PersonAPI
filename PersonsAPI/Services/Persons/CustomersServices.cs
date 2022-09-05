@@ -3,6 +3,7 @@ using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Repositories.Persons;
 using EmployeesAPI.Services.Persons.Interfaces;
+using IdentityServer4.Extensions;
 using MySqlConnector;
 
 namespace EmployeesAPI.Services.Persons;
@@ -22,25 +23,25 @@ public class CustomersServices : ICustomerServices
         _ceoMapperToDto = ceoMapperToDto;
     }
 
-    public bool Add(CustomerDto personDto)
+    public bool Add(CustomerDto customerDto)
     {
         try
         {
             Logger.LogInformation("Adding a new customer to database.");
 
-            var person = new Customer
+            var customer = new Customer
             {
-                FirstName = personDto.FirstName,
-                LastName = personDto.LastName,
-                Post = personDto.Post,
-                Email = personDto.Email,
+                FirstName = customerDto.FirstName,
+                LastName = customerDto.LastName,
+                Post = customerDto.Post,
+                Email = customerDto.Email,
                 Company = new Company
                 {
-                    Inn = personDto.CompanyInn,
+                    Inn = customerDto.CompanyInn,
                 }
             };
 
-            bool result = _repository.Add(person);
+            bool result = _repository.Add(customer);
 
             Logger.LogInformation("New customer was added.");
 
@@ -54,27 +55,27 @@ public class CustomersServices : ICustomerServices
         }
     }
 
-    public bool Update(int id, CustomerDto personDto)
+    public bool Update(int id, CustomerDto customerDto)
     {
         try
         {
             Logger.LogInformation($"Updating customer {id}");
 
-            var person = new Customer
+            var customer = new Customer
             {
-                FirstName = personDto.FirstName,
-                LastName = personDto.LastName,
-                Post = personDto.Post,
-                Email = personDto.Email,
+                FirstName = customerDto.FirstName,
+                LastName = customerDto.LastName,
+                Post = customerDto.Post,
+                Email = customerDto.Email,
                 Company = new Company
                 {
-                    Inn = personDto.CompanyInn,
+                    Inn = customerDto.CompanyInn,
                 }
             };
 
             Logger.LogInformation($"Customer {id} updated.");
 
-            return _repository.Update(id, person);
+            return _repository.Update(customer);
         }
         catch (Exception e)
         {
@@ -83,7 +84,7 @@ public class CustomersServices : ICustomerServices
         }
     }
 
-    public bool TryFind(int id, out CustomerDto personDto)
+    public bool TryFind(int id, out CustomerDto employeeDto)
     {
         try
         {
@@ -95,7 +96,7 @@ public class CustomersServices : ICustomerServices
             {
                 Logger.LogInformation($"Customer {id} found.");
 
-                personDto = new CustomerDto
+                employeeDto = new CustomerDto
                 {
                     FirstName = person.FirstName,
                     LastName = person.LastName,
@@ -104,11 +105,11 @@ public class CustomersServices : ICustomerServices
                 };
                 try
                 {
-                    personDto.CompanyInn = person.Company.Inn;
+                    employeeDto.CompanyInn = person.Company.Inn;
                 }
                 catch
                 {
-                    Logger.LogInformation($"Customer {personDto.Email} doesn't have company");
+                    Logger.LogInformation($"Customer {employeeDto.Email} doesn't have company");
                 }
 
                 return result;
@@ -116,7 +117,7 @@ public class CustomersServices : ICustomerServices
 
             Logger.LogInformation($"Customer {id} haven't been found.");
 
-            personDto = new CustomerDto();
+            employeeDto = new CustomerDto();
 
             return false;
         }
@@ -124,13 +125,13 @@ public class CustomersServices : ICustomerServices
         {
             Logger.LogError(e.ToString());
 
-            personDto = new CustomerDto();
+            employeeDto = new CustomerDto();
 
             return false;
         }
     }
 
-    public bool TryFind(string firstName, string lastName, out CustomerDto personDto)
+    public bool TryFind(string firstName, string lastName, out CustomerDto employeeDto)
     {
         try
         {
@@ -142,7 +143,7 @@ public class CustomersServices : ICustomerServices
             {
                 Logger.LogInformation($"Customer {firstName} {lastName} found.");
 
-                personDto = new CustomerDto
+                employeeDto = new CustomerDto
                 {
                     FirstName = person.FirstName,
                     LastName = person.LastName,
@@ -156,7 +157,7 @@ public class CustomersServices : ICustomerServices
 
             Logger.LogInformation($"Customer {firstName} {lastName} haven't been found.");
 
-            personDto = new CustomerDto();
+            employeeDto = new CustomerDto();
 
             return false;
         }
@@ -164,7 +165,7 @@ public class CustomersServices : ICustomerServices
         {
             Logger.LogError(e.ToString());
 
-            personDto = new CustomerDto();
+            employeeDto = new CustomerDto();
 
             return false;
         }
@@ -196,7 +197,7 @@ public class CustomersServices : ICustomerServices
         }
     }
 
-    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<CustomerDto> dtos)
+    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<CustomerDto> employeeDtos)
     {
         try
         {
@@ -216,17 +217,17 @@ public class CustomersServices : ICustomerServices
                         LastName = person.LastName,
                         Post = person.Post,
                         Email = person.Email,
-                        CompanyInn = person.Company.Inn
+                        CompanyInn = person.Company == null ? null : person.Company.Inn
                     });
                 }
 
-                dtos = list;
+                employeeDtos = list;
 
                 return result;
             }
             else
             {
-                dtos = new List<CustomerDto>();
+                employeeDtos = new List<CustomerDto>();
 
                 return result;
             }
@@ -235,7 +236,7 @@ public class CustomersServices : ICustomerServices
         {
             Logger.LogError(e.ToString());
 
-            dtos = new List<CustomerDto>();
+            employeeDtos = new List<CustomerDto>();
 
             return false;
         }

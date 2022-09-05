@@ -26,13 +26,13 @@ public class EmployeeServices : IEmployeeServices
         _mapperToDto = mapperToDto;
     }
 
-    public bool Add(EmployeeDTO personDto, string password)
+    public bool Add(EmployeeDTO employeeDto, string password)
     {
         try
         {
             Logger.LogInformation("Adding a new employee to database.");
 
-            var person = _mapperFromDto.Map<Employee>(personDto);
+            var person = _mapperFromDto.Map<Employee>(employeeDto);
 
             person.Password = Encrypt.Password(password);
 
@@ -50,19 +50,21 @@ public class EmployeeServices : IEmployeeServices
         }
     }
 
-    public bool Update(int id, EmployeeDTO personDto)
+    public bool Update(int id, string password, EmployeeDTO employeeDto)
     {
         try
         {
             Logger.LogInformation($"Updating employee {id}");
 
-            var person = _mapperFromDto.Map<Employee>(personDto);
+            var employee = _mapperFromDto.Map<Employee>(employeeDto);
 
-            person.Id = id;
+            employee.Id = id;
+
+            employee.Password = password;
 
             Logger.LogInformation($"Employee {id} updated.");
 
-            return _repository.Update(id, person);
+            return _repository.Update(employee);
         }
         catch (Exception e)
         {
@@ -71,7 +73,7 @@ public class EmployeeServices : IEmployeeServices
         }
     }
 
-    public bool TryFind(int id, out EmployeeDTO personDto)
+    public bool TryFind(int id, out EmployeeDTO employeeDto)
     {
         try
         {
@@ -83,14 +85,14 @@ public class EmployeeServices : IEmployeeServices
             {
                 Logger.LogInformation($"Employee {id} found.");
 
-                personDto = _mapperToDto.Map<EmployeeDTO>(person);
+                employeeDto = _mapperToDto.Map<EmployeeDTO>(person);
 
                 return result;
             }
 
             Logger.LogInformation($"Employee {id} haven't been found.");
 
-            personDto = new EmployeeDTO();
+            employeeDto = new EmployeeDTO();
 
             return false;
         }
@@ -98,13 +100,13 @@ public class EmployeeServices : IEmployeeServices
         {
             Logger.LogError(e.ToString());
 
-            personDto = new EmployeeDTO();
+            employeeDto = new EmployeeDTO();
 
             return false;
         }
     }
 
-    public bool TryFind(string firstName, string lastName, out EmployeeDTO personDto)
+    public bool TryFind(string firstName, string lastName, out EmployeeDTO employeeDto)
     {
         try
         {
@@ -116,14 +118,14 @@ public class EmployeeServices : IEmployeeServices
             {
                 Logger.LogInformation($"Employee {lastName} found.");
 
-                personDto = _mapperToDto.Map<EmployeeDTO>(person);
+                employeeDto = _mapperToDto.Map<EmployeeDTO>(person);
 
                 return result;
             }
 
             Logger.LogInformation($"Employee {lastName} haven't been found.");
 
-            personDto = new EmployeeDTO();
+            employeeDto = new EmployeeDTO();
 
             return false;
         }
@@ -131,7 +133,7 @@ public class EmployeeServices : IEmployeeServices
         {
             Logger.LogError(e.ToString());
 
-            personDto = new EmployeeDTO();
+            employeeDto = new EmployeeDTO();
 
             return false;
         }
@@ -163,7 +165,7 @@ public class EmployeeServices : IEmployeeServices
         }
     }
 
-    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<EmployeeDTO> dtos)
+    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<EmployeeDTO> employeeDtos)
     {
         try
         {
@@ -178,13 +180,13 @@ public class EmployeeServices : IEmployeeServices
                 foreach (var person in persons)
                     list.Add(_mapperToDto.Map<EmployeeDTO>(person));
 
-                dtos = list;
+                employeeDtos = list;
 
                 return result;
             }
             else
             {
-                dtos = new List<EmployeeDTO>();
+                employeeDtos = new List<EmployeeDTO>();
 
                 return result;
             }
@@ -193,7 +195,7 @@ public class EmployeeServices : IEmployeeServices
         {
             Logger.LogError(e.ToString());
 
-            dtos = new List<EmployeeDTO>();
+            employeeDtos = new List<EmployeeDTO>();
 
             return false;
         }

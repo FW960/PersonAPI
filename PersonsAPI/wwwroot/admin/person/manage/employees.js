@@ -156,6 +156,167 @@ document.querySelector(".employee-get-by-name-button").addEventListener("click",
         }
 
         document.querySelector(".employeesOutputText").textContent = text;
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Employee not found";
+    }
+})
+
+document.querySelector(".employee-get-by-id-range-button").addEventListener("click", async function e()
+{
+    let employeeStartIdInputFindRage = parseInt(document.querySelector(".employeeStartIdInputFindRage").value);
+
+    let employeeEndIdInputFindRage = parseInt(document.querySelector(".employeeEndIdInputFindRage").value);
+
+    let resp = await fetch(`https://localhost:7292/employees/get/range/agents/skip_from=${employeeStartIdInputFindRage}&take_until=${employeeEndIdInputFindRage}`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+
+    if (resp.status == 401 && !authorizedTwoTimes)
+    {
+        authorizeAgain();
+        return;
+    } else if (resp.status == 401)
+    {
+        getNewToken();
+
+        resp = await fetch(`https://localhost:7292/employees/get/range/agents/skip_from=${employeeStartIdInputFindRage}&take_until=${employeeEndIdInputFindRage}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+    }
+
+    if (resp.ok)
+    {
+        let employeeDtos = await resp.json();
+
+        let text = "";
+
+        employeeDtos.forEach(employee =>
+        {
+            for (const key in employee)
+            {
+                text += `${key} ${employee[key]}` + "\n";
+            }
+            text += "\n";
+        });
+
+        document.querySelector(".employeesOutputText").textContent = text;
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Employees not found";
+    }
+})
+
+document.querySelector(".employee-update-button").addEventListener("click", async function e()
+{
+    let employeeIdInputUpdate = parseInt(document.querySelector(".employeeIdInputUpdate").value);
+
+    let employeeFirstNameInputUpdate = document.querySelector(".employeeFirstNameInputUpdate").value;
+
+    let employeeLastnameInputUpdate = document.querySelector(".employeeLastnameInputUpdate").value;
+
+    let employeeEmailInputUpdate = document.querySelector(".employeeEmailInputUpdate").value;
+
+    let employeeAgeInputUpdate = document.querySelector(".employeeAgeInputUpdate").value;
+
+    let employeeGroupInputUpdate = document.querySelector(".employeeGroupInputUpdate").value;
+
+    let employeeInputPasswordUpdate = document.querySelector(".employeeInputPasswordUpdate").value;
+
+    let resp = await fetch(`https://localhost:7292/employees/update/agent/id=${employeeIdInputUpdate}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+            "password": employeeInputPasswordUpdate
+        },
+        body: JSON.stringify
+            (
+                {
+                    FirstName: employeeFirstNameInputUpdate,
+                    LastName: employeeLastnameInputUpdate,
+                    Age: employeeAgeInputUpdate,
+                    Email: employeeEmailInputUpdate,
+                    Group: employeeGroupInputUpdate
+                }
+            )
+    })
+    if (resp.status == 401 && !authorizedTwoTimes)
+    {
+        authorizeAgain();
+        return;
+    } else if (resp.status == 401)
+    {
+        getNewToken();
+
+        resp = await fetch(`https://localhost:7292/employees/update/agent/id=${employeeIdInputGetById}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                "Authorization": `Bearer ${token}`,
+                body: JSON.stringify
+                    (
+                        {
+                            FirstName: employeeFirstNameInputUpdate,
+                            LastName: employeeLastnameInputUpdate,
+                            Age: employeeAgeInputUpdate,
+                            Email: employeeEmailInputUpdate,
+                            Group: employeeGroupInputUpdate
+                        }
+                    )
+            }
+        })
+    }
+
+    if (resp.ok)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Employee updated";
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Employee not found";
+    }
+
+})
+
+document.querySelector(".employee-delete-button").addEventListener("click", async function e()
+{
+    let employeeInputIdDelete = document.querySelector(".employeeInputIdDelete").value;
+
+    let resp = await fetch(`https://localhost:7292/employees/delete/agent/id=${employeeInputIdDelete}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+
+    if (resp.status == 401 && !authorizedTwoTimes)
+    {
+        authorizeAgain();
+        return;
+    } else if (resp.status == 401)
+    {
+        getNewToken();
+
+        resp = await fetch(`https://localhost:7292/employees/delete/agent/id=${employeeInputIdDelete}`, {
+            method: "DELETE",
+            headers: {
+                "Authorizaton": `Bearer ${token}`
+            }
+        })
+    }
+
+    if (resp.ok)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Employee deleted";
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Employee not found";
     }
 })
 

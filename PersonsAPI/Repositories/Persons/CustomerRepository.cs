@@ -50,7 +50,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
         }
     }
 
-    public bool Update(int id, Customer employee)
+    public bool Update(Customer employee)
     {
         try
         {
@@ -61,7 +61,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
             cmd.CommandText =
                 "UPDATE customers SET FirstName = @fName, LastName = @lName, Email = @email, company_inn = @com_inn, post = @post WHERE Id = @id";
 
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@id", employee.Id);
 
             cmd.Parameters.AddWithValue("@fName", employee.FirstName);
 
@@ -87,7 +87,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
         }
     }
 
-    public bool TryFind(int id, out Customer personEntity)
+    public bool TryFind(int id, out Customer employee)
     {
         try
         {
@@ -108,7 +108,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             while (reader.Read())
             {
-                personEntity = new Customer
+                employee = new Customer
                 {
                     Id = reader.GetInt32(0),
                     FirstName = reader.GetString(1),
@@ -118,7 +118,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                 };
                 try
                 {
-                    personEntity.Company = new Company
+                    employee.Company = new Company
                     {
                         Name = reader.GetString(6),
                         Inn = reader.GetString(8),
@@ -139,7 +139,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                 return true;
             }
 
-            personEntity = new Customer();
+            employee = new Customer();
 
             return false;
         }
@@ -153,7 +153,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
         }
     }
 
-    public bool TryFind(string firstName, string lastName, out Customer personEntity)
+    public bool TryFind(string firstName, string lastName, out Customer employee)
     {
         try
         {
@@ -174,7 +174,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
             while (reader.Read())
             {
-                personEntity = new Customer
+                employee = new Customer
                 {
                     Id = reader.GetInt32(0),
                     FirstName = reader.GetString(1),
@@ -185,7 +185,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
 
                 try
                 {
-                    personEntity.Company = new Company
+                    employee.Company = new Company
                     {
                         Name = reader.GetString(6),
                         Inn = reader.GetString(8),
@@ -206,7 +206,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
                 return true;
             }
 
-            personEntity = new Customer();
+            employee = new Customer();
 
             return false;
         }
@@ -248,7 +248,7 @@ public class CustomerRepository : IPersonsRepository<Customer>
         }
     }
 
-    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<Customer> persons)
+    public bool FindRange(int startIndex, int endIndex, out IReadOnlyCollection<Customer> employee)
     {
         try
         {
@@ -264,9 +264,9 @@ public class CustomerRepository : IPersonsRepository<Customer>
             cmd.Parameters.AddWithValue("@startIndex", startIndex);
 
             cmd.Parameters.AddWithValue("@endIndex", endIndex);
-
+            
             var reader = cmd.ExecuteReader();
-
+            
             List<Customer> list = new List<Customer>();
 
             while (reader.Read())
@@ -302,9 +302,9 @@ public class CustomerRepository : IPersonsRepository<Customer>
                 list.Add(personEntity);
             }
 
-            persons = list;
+            employee = list;
 
-            if (persons.Count == 0)
+            if (employee.Count == 0)
             {
                 return false;
             }

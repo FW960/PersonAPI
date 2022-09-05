@@ -105,6 +105,9 @@ $(".customer-get-by-id-button").click(async function e()
         }
 
         customersOutputText.val(text);
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Customer not found";
     }
 })
 
@@ -150,6 +153,9 @@ document.querySelector(".customers-get-by-name-button").addEventListener("click"
         }
 
         document.querySelector(".customersOutputText").textContent = text;
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Customer not found";
     }
 })
 
@@ -201,6 +207,9 @@ document.querySelector(".customers-get-by-id-range-button").addEventListener("cl
         });
 
         outputText.textContent = text;
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Customers not found";
     }
 })
 
@@ -265,6 +274,9 @@ document.querySelector(".customers-update-button").addEventListener("click", asy
     if (resp.ok)
     {
         document.querySelector(".customersOutputText").textContent = "Customer updated";
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Customer not found";
     }
 })
 
@@ -296,6 +308,9 @@ document.querySelector(".customers-delete-button").addEventListener("click", asy
     if (resp.ok)
     {
         document.querySelector(".customersOutputText").textContent = "Customer deleted";
+    } else if (resp.status == 401)
+    {
+        document.querySelector(".employeesOutputText").textContent = "Customer not found";
     }
 })
 

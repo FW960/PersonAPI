@@ -32,3 +32,4 @@ C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\obj\Debug\net6.0\ContractsA
 C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\obj\Debug\net6.0\ref\ContractsAPI.dll
 C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\obj\Debug\net6.0\ContractsAPI.pdb
 C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\obj\Debug\net6.0\ContractsAPI.genruntimeconfig.cache
+C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\MySqlConnector.dll

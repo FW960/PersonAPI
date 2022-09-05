@@ -4,5 +4,6 @@ namespace EmployeesAPI.Services.Persons.Interfaces;
 
 public interface IEmployeeServices : IPersonsServices<EmployeeDTO>
 {
-    public bool Add(EmployeeDTO personDto, string password);
+    public bool Update(int id, string password, EmployeeDTO employeeDto);
+    public bool Add(EmployeeDTO employeeDto, string password);
 }
