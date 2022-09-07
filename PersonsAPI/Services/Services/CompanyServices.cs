@@ -1,17 +1,16 @@
-﻿using AutoMapper;
-using EmployeesAPI.Controllers;
+﻿using EmployeesAPI.Controllers;
 using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Repositories;
 using EmployeesAPI.Services.Interfaces;
-using MySqlConnector;
+using EmployeesAPI.Services.Validators.Companies;
 
-namespace EmployeesAPI.Services;
+namespace EmployeesAPI.Services.Services;
 
 public class CompanyServices : ICompanyServices
 {
     private readonly CompanyRepository _repository;
-    public ILogger<CompaniesController> Logger { get; set; }
+    public ILogger<CompaniesController> Logger { get; set; } //Logger is set in controller constructor
 
     public CompanyServices(CompanyRepository repository)
     {

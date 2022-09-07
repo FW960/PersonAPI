@@ -46,6 +46,10 @@ $(".company-add-button").click(async function e()
 
     if (resp.status == 200)
         companyTextArea.val(`Company ${companyInnInput} added`);
+    else if (resp.status == 422)
+    {
+        companyTextArea.val(await resp.json());
+    }
 })
 
 $(".company-get-button").click(async function e()
@@ -244,6 +248,9 @@ $(".customers-add-button").click(async function e()
     if (resp.ok)
     {
         customersOutputText.val("Customer added");
+    } else if (resp.status == 422)
+    {
+        customersOutputText.val(await resp.json())
     }
 
 })
@@ -506,9 +513,9 @@ document.querySelector(".employee-add-button").addEventListener("click", async f
 
     let employeeEmailInputAdd = document.querySelector(".employeeEmailInputAdd").value;
 
-    let employeeAgeInputAdd = document.querySelector(".employeeAgeInputAdd").value;
+    let employeeAgeInputAdd = parseInt(document.querySelector(".employeeAgeInputAdd").value);
 
-    let employeeGroupInputAdd = document.querySelector(".employeeGroupInputAdd").value;
+    let employeeGroupInputAdd = parseInt(document.querySelector(".employeeGroupInputAdd").value);
 
     let employeeInputPasswordAdd = document.querySelector(".employeeInputPasswordAdd").value;
 
@@ -560,9 +567,9 @@ document.querySelector(".employee-add-button").addEventListener("click", async f
     if (resp.ok)
     {
         document.querySelector(".employeesOutputText").textContent = "Employee added";
-    } else if (resp.status == 404)
+    } else if (resp.status == 422)
     {
-        document.querySelector(".employeesOutputText").textContent = "Employee not found";
+        document.querySelector(".employeesOutputText").textContent = await resp.json();
     }
 
 })

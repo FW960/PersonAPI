@@ -1,6 +1,9 @@
 ﻿using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Services.Persons;
+using EmployeesAPI.Services.Services;
+using EmployeesAPI.Services.Validators.Customers;
+using EmployeesAPI.Services.Validators.ErrorCodes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +13,12 @@ namespace EmployeesAPI.Controllers.Persons;
 public class CustomersController : BaseController
 {
     private readonly CustomersServices _services;
-
     public CustomersController(CustomersServices services, ILogger<CustomersServices> logger)
     {
         _services = services;
         _services.Logger = logger;
     }
-    
+
     [Authorize]
     [HttpPost("add/agent")]
     public IActionResult Add([FromBody] CustomerDto customer)

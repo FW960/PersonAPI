@@ -6,14 +6,17 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "EmployeesAPI/1.0.0": {
+      "PersonsAPI/1.0.0": {
         "dependencies": {
+          "AuthorizationAPI": "1.0.0",
           "AutoMapper": "11.0.1",
+          "FluentValidation": "11.2.1",
           "IdentityServer4.EntityFramework": "4.1.2",
           "IdentityServer4.EntityFramework.Mysql": "1.0.0-rc2",
           "Microsoft.AspNet.WebApi.WebHost": "5.2.9",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.7",
           "Microsoft.EntityFrameworkCore": "6.0.7",
+          "Microsoft.OpenApi": "1.2.3",
           "MySqlConnector": "2.1.11",
           "NLog": "5.0.1",
           "NLog.Web.AspNetCore": "5.1.0",
@@ -26,7 +29,7 @@
           "System.IdentityModel.Tokens.Jwt": "6.21.0"
         },
         "runtime": {
-          "EmployeesAPI.dll": {}
+          "PersonsAPI.dll": {}
         }
       },
       "AutoMapper/11.0.1": {
@@ -37,6 +40,14 @@
           "lib/netstandard2.1/AutoMapper.dll": {
             "assemblyVersion": "11.0.0.0",
             "fileVersion": "11.0.1.0"
+          }
+        }
+      },
+      "FluentValidation/11.2.1": {
+        "runtime": {
+          "lib/net6.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.2.1.0"
           }
         }
       },
@@ -1182,11 +1193,26 @@
             "fileVersion": "2.0.0.0"
           }
         }
+      },
+      "AuthorizationAPI/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.7",
+          "Microsoft.IdentityModel.Tokens": "6.21.0",
+          "Microsoft.OpenApi": "1.2.3",
+          "MySqlConnector": "2.1.11",
+          "Swashbuckle.AspNetCore.Swagger": "6.4.0",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.4.0",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.4.0",
+          "System.IdentityModel.Tokens.Jwt": "6.21.0"
+        },
+        "runtime": {
+          "AuthorizationAPI.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "EmployeesAPI/1.0.0": {
+    "PersonsAPI/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1197,6 +1223,13 @@
       "sha512": "sha512-WIadGC1pIwbnyTubvI577p3F++Bsj9q2Q3OaAc1I0QS+JhupN1xkdrPBhI9bPIeg63zM81tZplUNYkqU1HE5jQ==",
       "path": "automapper/11.0.1",
       "hashPath": "automapper.11.0.1.nupkg.sha512"
+    },
+    "FluentValidation/11.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZrQD0TGd0mHqf/zErZOEaba8cBeInaJj02nqinO+0La3uE08sJ5ScTYqsCbdx9fLHsX8rh+5KH5RtL2eOUS+OA==",
+      "path": "fluentvalidation/11.2.1",
+      "hashPath": "fluentvalidation.11.2.1.nupkg.sha512"
     },
     "IdentityModel/4.4.0": {
       "type": "package",
@@ -2079,6 +2112,11 @@
       "sha512": "sha512-B3ZbOEaGCqa7BLjZZw6wqprOJJMvP39h7Lr5ADkJOCPKHppAaCre34kR63/gfgpM4htzTfgm/pEw7r7qqqMgIA==",
       "path": "webactivatorex/2.0.0",
       "hashPath": "webactivatorex.2.0.0.nupkg.sha512"
+    },
+    "AuthorizationAPI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

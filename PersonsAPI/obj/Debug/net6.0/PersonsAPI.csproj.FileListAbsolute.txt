@@ -67,3 +67,5 @@ C:\Users\windo\RiderProjects\TimeSheets\PersonsAPI\bin\Debug\net6.0\Authorizatio
 C:\Users\windo\RiderProjects\TimeSheets\PersonsAPI\bin\Debug\net6.0\AuthorizationAPI.exe
 C:\Users\windo\RiderProjects\TimeSheets\PersonsAPI\bin\Debug\net6.0\AuthorizationAPI.dll
 C:\Users\windo\RiderProjects\TimeSheets\PersonsAPI\bin\Debug\net6.0\AuthorizationAPI.pdb
+C:\Users\windo\RiderProjects\TimeSheets\PersonsAPI\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\windo\RiderProjects\TimeSheets\PersonsAPI\bin\Debug\net6.0\Services\Validators\ErrorCodes\ValidationErrorCodes.Json

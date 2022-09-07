@@ -9,8 +9,11 @@ using EmployeesAPI.Entities;
 using EmployeesAPI.Middlewares;
 using EmployeesAPI.Repositories;
 using EmployeesAPI.Repositories.Persons;
-using EmployeesAPI.Services;
-using EmployeesAPI.Services.Persons;
+using EmployeesAPI.Services.Services;
+using EmployeesAPI.Services.Validators.Companies;
+using EmployeesAPI.Services.Validators.Customers;
+using EmployeesAPI.Services.Validators.Employees;
+using EmployeesAPI.Services.Validators.ErrorCodes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -35,27 +38,25 @@ try
     
     string connectionString = builder.Configuration.GetConnectionString("default");
 
-    MapperConfiguration ceoMapperConfig = new MapperConfiguration(conf => conf.CreateMap<CeoDto, Ceo>());
-
-    Mapper ceoMapperFromDto = new Mapper(ceoMapperConfig);
-
-    ceoMapperConfig = new MapperConfiguration(conf => conf.CreateMap<Ceo, CeoDto>());
-
-    Mapper ceoMapperToDto = new Mapper(ceoMapperConfig);
-    
-
     MySqlConnection connection = new MySqlConnection {ConnectionString = connectionString};
 
     EmployeeServices employeeServices =
         new EmployeeServices(employeeMapperFromDto, new EmployeeRepository(connection), employeeMapperToDto);
 
     CustomersServices customersServices =
-        new CustomersServices(new CustomerRepository(connection),
-            ceoMapperFromDto, ceoMapperToDto);
+        new CustomersServices(new CustomerRepository(connection));
 
     CompanyServices companyServices = new CompanyServices(new CompanyRepository(connection));
 
     builder.Services.AddDbContext<PersonsDbContext>();
+
+    builder.Services.AddScoped<CompanyValidator>();
+
+    builder.Services.AddScoped<EmployeesValidator>();
+
+    builder.Services.AddScoped<CustomersValidator>();
+
+    builder.Services.AddSingleton(ValidationCodes.Create());
 
     builder.Services.AddSingleton(employeeServices);
 
@@ -133,13 +134,13 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseMiddleware<ValidationMiddleware>();
+
     app.UseMiddleware<AuthMiddleware>();
 
     app.UseStaticFiles();
 
     app.UseAuthentication();
-
-    app.MapGet("/", [Authorize]() => "Hello World!");
 
     app.UseRouting();
 

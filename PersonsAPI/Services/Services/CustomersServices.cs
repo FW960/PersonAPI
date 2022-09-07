@@ -2,25 +2,18 @@
 using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Repositories.Persons;
-using EmployeesAPI.Services.Persons.Interfaces;
-using IdentityServer4.Extensions;
-using MySqlConnector;
+using EmployeesAPI.Services.Services.Interfaces;
 
-namespace EmployeesAPI.Services.Persons;
+namespace EmployeesAPI.Services.Services;
 
 public class CustomersServices : ICustomerServices
 {
-    private readonly IMapper _ceoMapperFromDto, _ceoMapperToDto;
-
     private readonly CustomerRepository _repository;
-    public ILogger<CustomersServices> Logger { get; set; }
+    public ILogger<CustomersServices> Logger { get; set; } //Logger is set in controller constructor
 
-    public CustomersServices(CustomerRepository repository,
-        IMapper ceoMapperFromDto, IMapper ceoMapperToDto)
+    public CustomersServices(CustomerRepository repository)
     {
         _repository = repository;
-        _ceoMapperFromDto = ceoMapperFromDto;
-        _ceoMapperToDto = ceoMapperToDto;
     }
 
     public bool Add(CustomerDto customerDto)

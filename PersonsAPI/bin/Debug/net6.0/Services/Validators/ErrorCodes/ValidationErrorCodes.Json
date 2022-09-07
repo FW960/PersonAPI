@@ -1,0 +1,28 @@
+﻿{
+  "errorCodes": [
+    {
+      "Key": "101",
+      "Value": "Age must be between 16 and 80"
+    },
+    {
+      "Key": "102",
+      "Value": "Email address doesn't correspondents to email validation rules"
+    },
+    {
+      "Key": "103",
+      "Value": "FirstName/LastName is empty or equals null"
+    },
+    {
+      "Key": "104",
+      "Value": "FirstName/LastName contains number or special symbol"
+    },
+    {
+      "Key": "201",
+      "Value": "Post can't contain special symbols or numbers"
+    },
+    {
+      "Key": "202",
+      "Value" : "INN only contains integers"
+    }
+  ]
+}

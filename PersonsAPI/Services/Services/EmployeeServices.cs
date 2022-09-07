@@ -4,9 +4,10 @@ using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Repositories.Persons;
 using EmployeesAPI.Repositories.Persons.Interfaces;
-using EmployeesAPI.Services.Persons.Interfaces;
+using EmployeesAPI.Services.Persons;
+using EmployeesAPI.Services.Services.Interfaces;
 
-namespace EmployeesAPI.Services.Persons;
+namespace EmployeesAPI.Services.Services;
 
 public class EmployeeServices : IEmployeeServices
 {
@@ -15,7 +16,7 @@ public class EmployeeServices : IEmployeeServices
     private readonly IMapper _mapperToDto;
 
     private IPersonsRepository<Employee> _repository;
-    public ILogger<EmployeesController> Logger { get; set; }
+    public ILogger<EmployeesController> Logger { get; set; } //Logger is set in controller constructor
 
     public EmployeeServices(Mapper mapperFromDto, EmployeeRepository repository, Mapper mapperToDto)
     {

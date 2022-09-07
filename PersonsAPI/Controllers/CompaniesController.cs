@@ -1,6 +1,9 @@
 ﻿using EmployeesAPI.DTOs;
 using EmployeesAPI.Entities;
 using EmployeesAPI.Services;
+using EmployeesAPI.Services.Services;
+using EmployeesAPI.Services.Validators.Companies;
+using EmployeesAPI.Services.Validators.ErrorCodes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +13,6 @@ namespace EmployeesAPI.Controllers;
 public class CompaniesController : BaseController
 {
     private readonly CompanyServices _services;
-
     public CompaniesController(CompanyServices services, ILogger<CompaniesController> logger)
     {
         _services = services;
@@ -19,9 +21,10 @@ public class CompaniesController : BaseController
 
     [Authorize]
     [HttpPost("add")]
-    public IActionResult Add([FromBody] CompanyDto companyDto)
+    public IActionResult Add([FromBody] CompanyDto company)
     {
-        if (_services.Add(companyDto))
+
+        if (_services.Add(company))
         {
             return Ok();
         }

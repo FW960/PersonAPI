@@ -1,6 +1,6 @@
 ﻿using EmployeesAPI.DTOs;
 
-namespace EmployeesAPI.Services.Persons.Interfaces;
+namespace EmployeesAPI.Services.Services.Interfaces;
 
 public interface ICustomerServices : IPersonsServices<CustomerDto>
 {

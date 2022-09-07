@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="11.0.1" />
+      <PackageReference Include="FluentValidation" Version="11.2.1" />
       <PackageReference Include="IdentityServer4.EntityFramework" Version="4.1.2" />
       <PackageReference Include="IdentityServer4.EntityFramework.Mysql" Version="1.0.0-rc2" />
       <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.9" />
