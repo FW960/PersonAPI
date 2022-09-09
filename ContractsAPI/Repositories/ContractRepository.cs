@@ -1,4 +1,4 @@
-﻿using ContractsAPI.Dtos;
+﻿using ContractsAPI.Dto;
 using MySqlConnector;
 
 namespace ContractsAPI.Repositories;
@@ -28,7 +28,7 @@ public class ContractRepository : IContractsRepository
 
             cmd.Parameters.AddWithValue("@creat_date", contract.CreationDate);
 
-            cmd.Parameters.AddWithValue("@isDone", contract.isDone);
+            cmd.Parameters.AddWithValue("@isDone", contract.IsDone);
 
             cmd.Parameters.AddWithValue("@group", contract.EmployeesGroup);
 
@@ -73,7 +73,7 @@ public class ContractRepository : IContractsRepository
             cmd.CommandText =
                 @"UPDATE contracts SET is_done = @isDone, employees_group = @group, company_inn = @inn, creation_date = @creat WHERE id = @id";
 
-            cmd.Parameters.AddWithValue("@isDone", contract.isDone);
+            cmd.Parameters.AddWithValue("@isDone", contract.IsDone);
 
             cmd.Parameters.AddWithValue("@group", contract.EmployeesGroup);
 
@@ -97,7 +97,7 @@ public class ContractRepository : IContractsRepository
         }
     }
 
-    public bool Get(string companyInn, int id, out ContractDto contract)
+    public bool Get(int companyInn, int id, out ContractDto contract)
     {
         try
         {
@@ -119,9 +119,9 @@ public class ContractRepository : IContractsRepository
                 contract = new ContractDto
                 {
                     Id = reader.GetInt32(0),
-                    CompanyInn = reader.GetString(1),
+                    CompanyInn = reader.GetInt32(1),
                     CreationDate = reader.GetDateTime(2),
-                    isDone = reader.GetBoolean(3),
+                    IsDone = reader.GetBoolean(3),
                     EmployeesGroup = reader.GetInt32(4)
                 };
 
@@ -142,7 +142,7 @@ public class ContractRepository : IContractsRepository
         }
     }
 
-    public bool Delete(DateTime creationDate, string companyInn, int id)
+    public bool Delete(DateTime creationDate, int companyInn, int id)
     {
         try
         {

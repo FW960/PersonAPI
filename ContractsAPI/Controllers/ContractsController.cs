@@ -1,4 +1,4 @@
-﻿using ContractsAPI.Dtos;
+﻿using ContractsAPI.Dto;
 using ContractsAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,8 +15,8 @@ public class ContractsController : Controller
     } 
     
     [Authorize]
-    [HttpGet("get/by-id={id:int}_and_inn={inn:alpha}")]
-    public IActionResult Get([FromRoute] int id, [FromRoute] string inn)
+    [HttpGet("get/by-id={id:int}_and_inn={inn:int}")]
+    public IActionResult Get([FromRoute] int id, [FromRoute] int inn)
     {
         if (_services.Get(HttpContext, inn, id))
         {

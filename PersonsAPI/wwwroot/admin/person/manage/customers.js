@@ -1,5 +1,15 @@
+"use-strict";
+
 let token = "";
 let refreshToken = "";
+
+let a = 0
+
+function name(){
+let a = 1;
+
+
+}
 
 getCookies();
 

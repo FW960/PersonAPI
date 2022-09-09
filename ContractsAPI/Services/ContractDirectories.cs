@@ -2,7 +2,7 @@
 
 public static class ContractDirectories
 {
-    public static string CreateContractDirectory(string companyInn, int contractId)
+    public static string CreateContractDirectory(int companyInn, int contractId)
     {
         string path = $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\Contracts\{companyInn}\{contractId}";
 
@@ -15,14 +15,14 @@ public static class ContractDirectories
     }
 
     
-    public static string FindContractDirectory(string companyInn, int contractId)
+    public static string FindContractDirectory(int companyInn, int contractId)
     {
         string directoryPath = $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\Contracts\{companyInn}\{contractId}";
 
         return directoryPath;
     }
     
-    public static void CreateCompanyDirectory(string companyInn)
+    public static void CreateCompanyDirectory(int companyInn)
     {
         string path = $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\Contracts\{companyInn}";
         

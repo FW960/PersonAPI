@@ -48,7 +48,7 @@ public static class ContractFile
     }
 
 
-    public static bool TryFindContractFilePath(string compannyInn, int contractId, out string path)
+    public static bool TryFindContractFilePath(int compannyInn, int contractId, out string path)
     {
         string directoryPath =
             $@"C:\Users\windo\RiderProjects\TimeSheets\ContractsApi\Contracts\{compannyInn}\{contractId}";

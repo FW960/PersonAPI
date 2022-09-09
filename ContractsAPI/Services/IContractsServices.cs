@@ -1,10 +1,10 @@
-﻿using ContractsAPI.Dtos;
+﻿using ContractsAPI.Dto;
 
 namespace ContractsAPI.Services;
 
 public interface IContractsServices
 {
-    public bool Get(HttpContext context, string companyInn, int id);
+    public bool Get(HttpContext context, int companyInn, int id);
 
     public bool Add(HttpContext context, ContractDto contract, out int id);
 

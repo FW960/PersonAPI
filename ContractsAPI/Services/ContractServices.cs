@@ -1,4 +1,4 @@
-﻿using ContractsAPI.Dtos;
+﻿using ContractsAPI.Dto;
 using ContractsAPI.Repositories;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
@@ -14,7 +14,7 @@ public class ContractServices : IContractsServices
         _repository = repository;
     }
 
-    public bool Get(HttpContext context, string companyInn, int id)
+    public bool Get(HttpContext context, int companyInn, int id)
     {
         try
         {

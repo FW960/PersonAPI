@@ -1,4 +1,4 @@
-﻿using ContractsAPI.Dtos;
+﻿using ContractsAPI.Dto;
 
 namespace ContractsAPI.Repositories;
 
@@ -8,7 +8,7 @@ public interface IContractsRepository
 
     public bool Update(ContractDto contract);
 
-    public bool Get(string companyInn, int id, out ContractDto contract);
+    public bool Get(int companyInn, int id, out ContractDto contract);
 
-    public bool Delete(DateTime creationDate, string companyInn, int id);
+    public bool Delete(DateTime creationDate, int companyInn, int id);
 }
