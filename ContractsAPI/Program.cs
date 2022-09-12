@@ -1,3 +1,4 @@
+using ContractsAPI.Middlewares;
 using ContractsAPI.Repositories;
 using ContractsAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -78,6 +79,10 @@ app.MapGet("/", () => "Hello World!");
 app.UseSwagger();
 
 app.UseSwaggerUI();
+
+app.UseMiddleware<AuthorizationMiddleware>();
+
+app.UseStaticFiles();
 
 app.UseAuthentication();
 

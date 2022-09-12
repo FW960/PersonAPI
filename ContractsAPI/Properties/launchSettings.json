@@ -9,6 +9,7 @@
   },
   "profiles": {
     "ContractsAPI": {
+      "launchUrl": "authorize.html",
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

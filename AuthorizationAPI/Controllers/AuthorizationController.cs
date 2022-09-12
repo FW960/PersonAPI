@@ -42,6 +42,7 @@ public class AuthorizationController : Controller
         {
             if (_employeeService.Authenticate(request, out TokenDTO dto, HttpContext, true))
             {
+                Response.Headers.Append("Token", dto.token);
                 return Ok(dto);
             }
         }

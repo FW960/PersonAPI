@@ -50,7 +50,7 @@ public class AuthMiddleware
                 if (JwtToken.ValidateToken(tokens.refreshToken, false))
                 {
                     string token;
-                    
+
                     try
                     {
                         HttpClient client = new HttpClient();
@@ -63,7 +63,7 @@ public class AuthMiddleware
                         message.Headers.Add("RefreshToken", tokens.refreshToken);
 
                         var responseMessage = await client.SendAsync(message);
-                        
+
                         token = responseMessage.Headers.FirstOrDefault(header => header.Key == "Token").Value
                             .First();
                     }
@@ -87,7 +87,6 @@ public class AuthMiddleware
                             Expires = DateTimeOffset.Now + TimeSpan.FromMinutes(300),
                         }
                     );
-
                 }
                 else
                 {

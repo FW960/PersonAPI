@@ -1,0 +1,43 @@
+.wrapper {
+
+    .authorizationBox {
+        width: fit-content;
+        height: fit-content;
+        box-sizing: border-box;
+        padding: 20px;
+        margin: 0 auto;
+        margin-top: 200px;
+        display: block;
+
+        .emailInput {
+            display: block;
+        }
+
+        .passwordInput {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .buttonsWrapper {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-around;
+
+            .sendButton {
+                width: 45px;
+                border: 1px solid #000;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            .resetButton {
+                width: 45px;
+                border: 1px solid #000;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+            }
+        }
+    }
+}

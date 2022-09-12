@@ -1,7 +1,6 @@
 using AuthorizationAPI.Services.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using MySqlConnector;
-
-var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +10,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(myAllowSpecificOrigins,
+    options.AddPolicy("Admin Cors",
         policy =>
         {
             policy.WithOrigins("https://localhost:7292")
                 .AllowAnyHeader()
                 .AllowAnyMethod().Build();
         });
+    options.AddPolicy("Employee Cors",
+        policy => { policy.WithOrigins("https://localhost:7230").AllowAnyHeader().AllowAnyMethod().Build(); });
 });
 
 builder.Services.AddSingleton(new EmployeeService(new MySqlConnection
@@ -39,7 +40,9 @@ app.MapGet("/", () => "Hello World!");
 
 app.UseRouting();
 
-app.UseCors(myAllowSpecificOrigins);
+app.UseCors("Employee Cors");
+
+app.UseCors("Admin Cors");
 
 app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
