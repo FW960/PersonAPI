@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FrdL3w3iSuRP1j8GQEkrNWdPS5b5t3Mys3LUgIZ+l4M=",
+  "Hash": "+F1FZfim5lXVL44yrQRJjl9kXmAozR5JEx1loYLZtJg=",
   "Source": "ContractsAPI",
   "BasePath": "_content/ContractsAPI",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\authorized.html"
+    },
+    {
+      "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\ContractsAPI\\wwwroot\\authorizedStyle.scss",
+      "SourceId": "ContractsAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\ContractsAPI\\wwwroot\\",
+      "BasePath": "_content/ContractsAPI",
+      "RelativePath": "authorizedStyle.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\authorizedStyle.scss"
     },
     {
       "Identity": "C:\\Users\\windo\\RiderProjects\\TimeSheets\\ContractsAPI\\wwwroot\\style.css",

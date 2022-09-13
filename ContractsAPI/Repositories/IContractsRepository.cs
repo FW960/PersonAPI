@@ -9,6 +9,8 @@ public interface IContractsRepository
     public bool Update(ContractDto contract);
 
     public bool Get(int companyInn, int id, out ContractDto contract);
+    
+    public bool Get(string email, out ContractDto contract);
 
     public bool Delete(DateTime creationDate, int companyInn, int id);
 }

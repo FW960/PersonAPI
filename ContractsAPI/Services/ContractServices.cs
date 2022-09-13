@@ -44,6 +44,41 @@ public class ContractServices : IContractsServices
         }
     }
 
+    public bool Get(HttpContext context)
+    {
+        try
+        {
+            string token = context.Request.Headers.First(x => x.Key.Equals("Authorize")).Value.First();
+
+            string email = JwtToken.GetEmailFromClaims(token);
+
+            if (_repository.Get(email, out ContractDto contract))
+            {
+                if (ContractFile.TryFindContractFilePath(contract.CompanyInn, contract.Id, out string path))
+                {
+                    IFileInfo fileInfo = new PhysicalFileInfo(new FileInfo(path));
+
+                    ContractFile.Send(context.Response, fileInfo);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }else
+            {
+                return false;
+            }
+        }
+        catch
+        {
+            //todo logger
+
+            return false;
+        }
+    }
+
     public bool Add(HttpContext context, ContractDto contract, out int id)
     {
         try

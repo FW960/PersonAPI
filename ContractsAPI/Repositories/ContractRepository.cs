@@ -142,6 +142,11 @@ public class ContractRepository : IContractsRepository
         }
     }
 
+    public bool Get(string email, out ContractDto contract)
+    {
+        throw new NotImplementedException();
+    }
+
     public bool Delete(DateTime creationDate, int companyInn, int id)
     {
         try

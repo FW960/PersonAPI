@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ContractsAPI.Services;
 
-public static class TokenValidator
+public static class JwtToken
 {
     public static bool Validate(string token, bool mainToken)
     {
@@ -27,5 +27,16 @@ public static class TokenValidator
         {
             return false;
         }
+    }
+
+    public static string GetEmailFromClaims(string token)
+    {
+        JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+
+        JwtSecurityToken jwtToken = handler.ReadJwtToken(token);
+
+        string email = jwtToken.Claims.First(x => x.Type.Contains("Email")).Value;
+
+        return email;
     }
 }

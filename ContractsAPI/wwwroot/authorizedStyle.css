@@ -1,0 +1,68 @@
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  border: 1px solid #000;
+}
+.wrapper header {
+  height: 100px;
+  border-bottom: 1px solid #000;
+}
+.wrapper header .header-text-wrapper .header-text {
+  text-align: center;
+  padding-top: 10px;
+}
+.wrapper main {
+  min-height: 450px;
+}
+.wrapper main .main-wrapper {
+  margin: 5% auto 10%;
+  border: 1px solid #000;
+  height: 400px;
+  width: 33%;
+}
+.wrapper main .main-wrapper .get-button-wrapper {
+  height: 50%;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+  padding-top: 25%;
+}
+.wrapper main .main-wrapper .get-button-wrapper .get-button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.wrapper main .main-wrapper .send-button-wrapper {
+  height: 50%;
+}
+.wrapper main .main-wrapper .send-button-wrapper .file-upload {
+  display: block;
+  margin: 50px auto;
+}
+.wrapper main .main-wrapper .send-button-wrapper .submit-button {
+  padding: 2px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.wrapper footer {
+  height: 100px;
+  border-top: 1px solid #000;
+}
+.wrapper footer .footer-text-wrapper .footer-text {
+  padding: 10px 0 0 20px;
+}/*# sourceMappingURL=authorizedStyle.css.map */

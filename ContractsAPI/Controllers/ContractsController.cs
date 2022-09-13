@@ -62,4 +62,11 @@ public class ContractsController : Controller
         return StatusCode(400);
     }
 
+    [Authorize]
+    [HttpGet("get/for-employee")]
+    public IActionResult Get()
+    {
+        return Ok();
+    }
+
 }
