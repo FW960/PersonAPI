@@ -2,6 +2,7 @@ using ContractsAPI.Middlewares;
 using ContractsAPI.Repositories;
 using ContractsAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MySqlConnector;
@@ -60,6 +61,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 );
 builder.Services.AddAuthorization();
 
+builder.Services.Configure<FormOptions>(x =>
+{
+    x.ValueLengthLimit = Int32.MaxValue;
+    x.MultipartBodyLengthLimit = Int64.MaxValue;
+});
+
 var connectionString = builder.Configuration.GetConnectionString("default");
 
 MySqlConnection connection = new MySqlConnection(connectionString);
@@ -81,6 +88,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseMiddleware<AuthorizationMiddleware>();
+
+app.UseMiddleware<GetEmployeeInfoAfterAuthorization>();
 
 app.UseStaticFiles();
 

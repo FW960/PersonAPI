@@ -48,7 +48,7 @@ public class ContractServices : IContractsServices
     {
         try
         {
-            string token = context.Request.Headers.First(x => x.Key.Equals("Authorize")).Value.First();
+            string token = context.Request.Headers.First(x => x.Key.Equals("Authorization")).Value.First().Split("Bearer ")[1];
 
             string email = JwtToken.GetEmailFromClaims(token);
 
@@ -66,7 +66,8 @@ public class ContractServices : IContractsServices
                 {
                     return false;
                 }
-            }else
+            }
+            else
             {
                 return false;
             }
@@ -79,7 +80,7 @@ public class ContractServices : IContractsServices
         }
     }
 
-    public bool Add(HttpContext context, ContractDto contract, out int id)
+    public bool Add(HttpContext context, int inn, int group, decimal price, out int id)
     {
         try
         {
@@ -89,6 +90,14 @@ public class ContractServices : IContractsServices
                 return false;
             }
 
+            ContractDto contract = new ContractDto
+            {
+                CompanyInn = inn,
+                EmployeesGroup = group,
+                CreationDate = DateTime.Now,
+                Price = price
+            };
+
             if (_repository.Add(contract, out id))
             {
                 ContractDirectories.CreateCompanyDirectory(contract.CompanyInn);
@@ -97,9 +106,7 @@ public class ContractServices : IContractsServices
 
                 var contractFile = context.Request.Form.Files[0];
 
-                ContractFile.Copy(path, contractFile, contract.CreationDate);
-
-                ContractFile.Send(context.Response, new PhysicalFileInfo(new FileInfo(path)));
+                path = ContractFile.Copy(path, contractFile, id);
 
                 return true;
             }
@@ -135,7 +142,7 @@ public class ContractServices : IContractsServices
                         ContractFile.Delete(path);
                     }
 
-                    ContractFile.Copy(directoryPath, file, dto.CreationDate);
+                    ContractFile.Copy(directoryPath, file, dto.Id);
 
                     return true;
                 }

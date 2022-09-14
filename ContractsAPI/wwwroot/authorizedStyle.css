@@ -1,3 +1,14 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 .wrapper {
   width: 1200px;
   margin: 0 auto;
@@ -34,22 +45,16 @@
   height: -moz-fit-content;
   height: fit-content;
   border: 1px solid #000;
-  border-radius: 5px;
   padding: 2px;
   margin: 0 auto;
   cursor: pointer;
+  background-color: rgb(230, 229, 229);
+  border-radius: 3px;
 }
-.wrapper main .main-wrapper .send-button-wrapper {
-  height: 50%;
+.wrapper main .main-wrapper .get-button-wrapper .get-button:hover {
+  background-color: rgb(208, 207, 207);
 }
-.wrapper main .main-wrapper .send-button-wrapper .file-upload {
-  display: block;
-  margin: 50px auto;
-}
-.wrapper main .main-wrapper .send-button-wrapper .submit-button {
-  padding: 2px;
-  border: 1px solid #000;
-  border-radius: 5px;
+.wrapper main .main-wrapper .upload-form {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -57,7 +62,44 @@
   height: -moz-fit-content;
   height: fit-content;
   margin: 0 auto;
+}
+.wrapper main .main-wrapper .upload-form .file-upload {
+  display: block;
+  margin: 50px auto 0;
+}
+.wrapper main .main-wrapper .upload-form .company-inn-input {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+.wrapper main .main-wrapper .upload-form .price-input {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+.wrapper main .main-wrapper .upload-form .send-button-wrapper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+.wrapper main .main-wrapper .upload-form .send-button-wrapper .send-button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #000;
+  padding: 2px;
+  margin: 0 auto;
   cursor: pointer;
+  background-color: rgb(230, 229, 229);
+  border-radius: 3px;
+}
+.wrapper main .main-wrapper .upload-form .send-button-wrapper .send-button:hover {
+  background-color: rgb(208, 207, 207);
 }
 .wrapper footer {
   height: 100px;

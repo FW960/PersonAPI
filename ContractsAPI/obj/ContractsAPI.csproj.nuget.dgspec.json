@@ -44,6 +44,14 @@
               "target": "Package",
               "version": "[6.0.7, )"
             },
+            "Microsoft.AspNetCore.SpaServices": {
+              "target": "Package",
+              "version": "[3.1.29, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
             "Microsoft.OpenApi": {
               "target": "Package",
               "version": "[1.2.3, )"

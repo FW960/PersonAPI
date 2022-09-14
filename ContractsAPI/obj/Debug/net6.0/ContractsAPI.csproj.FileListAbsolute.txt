@@ -34,3 +34,7 @@ C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\obj\Debug\net6.0\ContractsA
 C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\obj\Debug\net6.0\ContractsAPI.genruntimeconfig.cache
 C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\ContractsAPI.staticwebassets.runtime.json
+C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\Microsoft.AspNetCore.NodeServices.dll
+C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\Microsoft.AspNetCore.SpaServices.dll
+C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
+C:\Users\windo\RiderProjects\TimeSheets\ContractsAPI\bin\Debug\net6.0\Newtonsoft.Json.dll

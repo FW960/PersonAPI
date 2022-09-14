@@ -9,11 +9,12 @@ namespace ContractsAPI.Controllers;
 public class ContractsController : Controller
 {
     private readonly ContractServices _services;
+
     public ContractsController(ContractServices services)
     {
         _services = services;
-    } 
-    
+    }
+
     [Authorize]
     [HttpGet("get/by-id={id:int}_and_inn={inn:int}")]
     public IActionResult Get([FromRoute] int id, [FromRoute] int inn)
@@ -39,14 +40,14 @@ public class ContractsController : Controller
     }
 
     [Authorize]
-    [HttpPost("add")]
-    public IActionResult Add([FromBody] ContractDto dto)
+    [HttpPost("add/company_inn={inn}/employee_group={group}/price={price}")]
+    public IActionResult Add([FromRoute] int inn, [FromRoute] int group, [FromRoute] decimal price)
     {
-        if (_services.Add(HttpContext, dto, out int id))
+        if (_services.Add(HttpContext, inn, group, price, out int id))
         {
             return Ok(id);
         }
-        
+
         return StatusCode(400);
     }
 
@@ -63,10 +64,21 @@ public class ContractsController : Controller
     }
 
     [Authorize]
-    [HttpGet("get/for-employee")]
+    [HttpGet("get")]
     public IActionResult Get()
     {
-        return Ok();
-    }
+        try//Выбрасывает exception если отправить несколько запросов за раз
+        {
+            if (_services.Get(HttpContext))
+            {
+                return Ok();
+            }
 
+            return StatusCode(400);
+        }
+        catch
+        {
+            return BadRequest();
+        }
+    }
 }

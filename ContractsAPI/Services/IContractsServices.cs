@@ -8,7 +8,7 @@ public interface IContractsServices
 
     public bool Get(HttpContext context);
 
-    public bool Add(HttpContext context, ContractDto contract, out int id);
+    public bool Add(HttpContext context, int inn, int group, decimal price, out int id);
 
     public bool Update(HttpContext context, ContractDto dto);
 

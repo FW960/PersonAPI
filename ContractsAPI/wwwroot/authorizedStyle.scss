@@ -1,3 +1,14 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 .wrapper {
     width: 1200px;
     margin: 0 auto;
@@ -35,31 +46,62 @@
                     width: fit-content;
                     height: fit-content;
                     border: 1px solid #000;
-                    border-radius: 5px;
                     padding: 2px;
                     margin: 0 auto;
                     cursor: pointer;
+                    background-color: rgb(230, 229, 229);
+                    border-radius: 3px;
+                }
+
+                .get-button:hover {
+                    background-color: rgb(208, 207, 207);
                 }
             }
 
-            .send-button-wrapper {
-                height: 50%;
+            .upload-form {
+                width: fit-content;
+                height: fit-content;
+                margin: 0 auto;
 
                 .file-upload {
                     display: block;
-                    margin: 50px auto;
+                    margin: 50px auto 0;
                 }
 
-                .submit-button {
-                    padding: 2px;
-                    border: 1px solid #000;
-                    border-radius: 5px;
-                    width: fit-content;
-                    height: fit-content;
+                .company-inn-input {
+                    display: block;
                     margin: 0 auto;
-                    cursor: pointer;
+                    margin-top: 15px;
+                }
+
+                .price-input {
+                    display: block;
+                    margin: 0 auto;
+                    margin-top: 15px;
+                }
+
+                .send-button-wrapper {
+                    width: fit-content;
+                    margin: 0 auto;
+                    margin-top: 15px;
+
+                    .send-button {
+                        width: fit-content;
+                        height: fit-content;
+                        border: 1px solid #000;
+                        padding: 2px;
+                        margin: 0 auto;
+                        cursor: pointer;
+                        background-color: rgb(230, 229, 229);
+                        border-radius: 3px;
+                    }
+
+                    .send-button:hover {
+                        background-color: rgb(208, 207, 207);
+                    }
                 }
             }
+
         }
     }
 

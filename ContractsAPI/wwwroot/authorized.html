@@ -21,8 +21,13 @@
                 <div class="get-button-wrapper">
                     <div class="get-button">Get contract</div>
                 </div>
-                <div class="send-button-wrapper"><input class="file-upload" type="file" accept=".pdf">
-                    <div class="submit-button">Send contract</div>
+                <div class="upload-form" action="contracts/add" method="post" enctype="multipart/form-data">
+                    <input class="file-upload" type="file" name="uploads" accept=".pdf" />
+                    <input type="number" class="company-inn-input" placeholder="Company inn"><input type="number"
+                        class="price-input" placeholder="Contract price">
+                    <div class="send-button-wrapper">
+                        <div class="send-button">Upload</div>
+                    </div>
                 </div>
             </div>
         </main>

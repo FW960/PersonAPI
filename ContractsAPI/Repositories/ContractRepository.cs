@@ -21,26 +21,30 @@ public class ContractRepository : IContractsRepository
             var cmd = _connection.CreateCommand();
 
             cmd.CommandText =
-                @"INSERT INTO contracts (company_inn, creation_date, is_done, employees_group) 
-                VALUES (@inn, @creat_date, @isDone, @group)";
+                @"INSERT INTO contracts (company_inn, creation_date, is_done, employees_group, price) 
+                VALUES (@inn, @creat_date, @isDone, @group, @price)";
 
             cmd.Parameters.AddWithValue("@inn", contract.CompanyInn);
 
             cmd.Parameters.AddWithValue("@creat_date", contract.CreationDate);
 
-            cmd.Parameters.AddWithValue("@isDone", contract.IsDone);
+            cmd.Parameters.AddWithValue("@isDone", false);
 
             cmd.Parameters.AddWithValue("@group", contract.EmployeesGroup);
 
+            cmd.Parameters.AddWithValue("@price", contract.Price);
+
             if (cmd.ExecuteNonQuery() == 1)
             {
-                cmd.CommandText = "SELECT Id FROM contracts WHERE company_inn = @creat AND company_inn = @inn";
+                cmd.Parameters.Clear();
 
-                cmd.Parameters.AddWithValue("@creat", contract.CreationDate);
+                cmd.CommandText = "SELECT id FROM contracts WHERE company_inn = @inn ORDER BY id DESC LIMIT 1";
 
                 cmd.Parameters.AddWithValue("@inn", contract.CompanyInn);
 
                 var reader = cmd.ExecuteReader();
+
+                reader.Read();
 
                 id = reader.GetInt32(0);
 
@@ -144,7 +148,44 @@ public class ContractRepository : IContractsRepository
 
     public bool Get(string email, out ContractDto contract)
     {
-        throw new NotImplementedException();
+        try
+        {
+            _connection.Open();
+
+            var cmd = _connection.CreateCommand();
+
+            cmd.CommandText = @"SELECT contracts.id, company_inn, creation_date, is_done, price
+                            FROM contracts
+                            LEFT JOIN employees c on c.group = employees_group
+                            WHERE c.Email = @email";
+
+            cmd.Parameters.AddWithValue("@email", email);
+
+            var reader = cmd.ExecuteReader();
+
+            reader.Read();
+
+            contract = new ContractDto
+            {
+                Id = reader.GetInt32(0),
+                CompanyInn = reader.GetInt32(1),
+                CreationDate = reader.GetDateTime(2),
+                IsDone = reader.GetBoolean(3),
+                Price = reader.GetDecimal(4)
+            };
+
+            return true;
+        }
+        catch
+        {
+            contract = new ContractDto();
+            
+            return false;
+        }
+        finally
+        {
+            _connection.Close();
+        }
     }
 
     public bool Delete(DateTime creationDate, int companyInn, int id)

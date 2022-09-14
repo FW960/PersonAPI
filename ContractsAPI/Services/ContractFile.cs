@@ -15,17 +15,17 @@ public static class ContractFile
         return true;
     }
 
-    public static string Copy(string path, IFormFile contractFile, DateTime creationDate)
+    public static string Copy(string path, IFormFile contractFile, int id)
     {
-        FileStream fileStream = new FileStream(path, FileMode.Create);
+        path = path + @"\" + $"contract-{id}" + ".pdf";
+
+        FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
 
         contractFile.CopyTo(fileStream);
 
         fileStream.Close();
 
-        File.Move(path + $@"\{contractFile.Name}", path + $@"\Contract {creationDate}");
-
-        return path + $@"\{creationDate}";
+        return path;
     }
 
     public static bool Delete(string path)
@@ -40,11 +40,11 @@ public static class ContractFile
         return false;
     }
 
-    public static void Send(HttpResponse response, IFileInfo fileInfo)
+    public static async void Send(HttpResponse response, IFileInfo fileInfo)
     {
         response.Headers.ContentDisposition = $"attachment; filename={fileInfo.Name}";
-
-        response.SendFileAsync(fileInfo, CancellationToken.None);
+        
+        await response.SendFileAsync(fileInfo.PhysicalPath);
     }
 
 
@@ -57,7 +57,7 @@ public static class ContractFile
 
         foreach (var file in files)
         {
-            if (file.Contains("Contract"))
+            if (file.Contains("contract-"))
             {
                 path = file;
                 return true;
